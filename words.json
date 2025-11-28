@@ -2,241 +2,1201 @@
   {
     "id": 1,
     "english": "aggressive",
-    "chinese": "/ə'gresiv/ adj.好斗的,侵略性的;有闯劲的",
-    "example": "He is an aggressive salesman."
+    "chinese": "/ə'gresiv/ adj.好斗的;有进取心的",
+    "example": "aggressive behavior"
   },
   {
     "id": 2,
     "english": "congress",
-    "chinese": "/'kɒŋgres/ n.国会;代表大会;议会",
-    "example": "The power of Congress."
+    "chinese": "/'kɒŋgres/ n.国会;代表大会",
+    "example": "Member of Congress"
   },
   {
     "id": 3,
     "english": "conquer",
-    "chinese": "/'kɒŋkə(r)/ v.战胜,征服;攻克",
-    "example": "Love conquers all."
+    "chinese": "/'kɒŋkə(r)/ v.战胜,征服",
+    "example": "conquer the enemy"
   },
   {
     "id": 4,
     "english": "eminent",
-    "chinese": "/'emɪnənt/ adj.明显的;杰出的,有名的",
-    "example": "An eminent scientist."
+    "chinese": "/'emɪnənt/ adj.杰出的,有名的",
+    "example": "an eminent scientist"
   },
   {
     "id": 5,
     "english": "prominent",
     "chinese": "/'prɒmɪnənt/ adj.突出的,卓越的",
-    "example": "A prominent feature of the landscape."
+    "example": "prominent position"
   },
   {
     "id": 6,
     "english": "barrier",
-    "chinese": "/'bæriə(r)/ n.屏障;障碍物;界线",
-    "example": "Language barrier."
+    "chinese": "/'bæriə(r)/ n.屏障;障碍物",
+    "example": "trade barrier"
   },
   {
     "id": 7,
-    "english": "barren",
-    "chinese": "/'bærən/ adj.贫瘠的;不育的 n.荒原",
-    "example": "Barren land."
+    "english": "embarrass",
+    "chinese": "/ɪm'bærəs/ vt.使尴尬,使难堪",
+    "example": "embarrassed by the question"
   },
   {
     "id": 8,
-    "english": "embarrass",
-    "chinese": "/ɪm'bærəs/ vt.使尴尬,使难堪",
-    "example": "I didn't mean to embarrass you."
+    "english": "awkward",
+    "chinese": "/'ɔ:kwəd/ adj.令人尴尬的;笨拙的",
+    "example": "awkward silence"
   },
   {
     "id": 9,
-    "english": "awkward",
-    "chinese": "/'ɔ:kwəd/ adj.令人尴尬的;笨拙的",
-    "example": "An awkward silence."
+    "english": "disguise",
+    "chinese": "/dɪs'gaɪz/ vt.伪装;掩饰",
+    "example": "disguise oneself as a policeman"
   },
   {
     "id": 10,
-    "english": "bald",
-    "chinese": "/bɔ:ld/ adj.光秃秃的;直截了当的",
-    "example": "A bald statement."
+    "english": "ecological",
+    "chinese": "/ˌi:kə'lɒdʒɪkl/ adj.生态的",
+    "example": "ecological balance"
   },
   {
     "id": 11,
-    "english": "bold",
-    "chinese": "/bəʊld/ adj.勇敢的;鲁莽的;粗体的",
-    "example": "A bold plan."
+    "english": "scenario",
+    "chinese": "/sə'nɑ:riəʊ/ n.设想;剧情梗概",
+    "example": "worst-case scenario"
   },
   {
     "id": 12,
-    "english": "disguise",
-    "chinese": "/dɪs'gaɪz/ vt.伪装;掩饰 n.伪装物",
-    "example": "Blessing in disguise."
+    "english": "terrific",
+    "chinese": "/tə'rɪfɪk/ adj.极好的;巨大的",
+    "example": "a terrific job"
   },
   {
     "id": 13,
-    "english": "ecological",
-    "chinese": "/ˌi:kə'lɒdʒɪkl/ adj.生态的;生态学的",
-    "example": "Ecological balance."
+    "english": "magnificent",
+    "chinese": "/mæg'nɪfɪsnt/ adj.壮丽的;宏伟的",
+    "example": "magnificent view"
   },
   {
     "id": 14,
-    "english": "system",
-    "chinese": "/'sɪstəm/ n.体系;制度;系统",
-    "example": "Immune system."
+    "english": "emerge",
+    "chinese": "/i'mɜ:dʒ/ v.出现;浮现",
+    "example": "emerge from the water"
   },
   {
     "id": 15,
-    "english": "scene",
-    "chinese": "/si:n/ n.风景;现场;场景",
-    "example": "Behind the scenes."
+    "english": "emergency",
+    "chinese": "/i'mɜ:dʒənsi/ n.突发事件;紧急情况",
+    "example": "emergency room"
   },
   {
     "id": 16,
-    "english": "scenario",
-    "chinese": "/sə'nɑ:riəʊ/ n.设想;剧情梗概;可能的情况",
-    "example": "Worst-case scenario."
+    "english": "submerge",
+    "chinese": "/səb'mɜ:dʒ/ v.淹没;潜入水中",
+    "example": "submerge in water"
   },
   {
     "id": 17,
-    "english": "terrific",
-    "chinese": "/tə'rɪfɪk/ adj.极好的;巨大的",
-    "example": "You look terrific!"
+    "english": "marine",
+    "chinese": "/mə'ri:n/ adj.海洋的;海产的",
+    "example": "marine life"
   },
   {
     "id": 18,
-    "english": "magnificent",
-    "chinese": "/mæg'nɪfɪsnt/ adj.壮丽的;宏伟的",
-    "example": "A magnificent view."
+    "english": "overwhelm",
+    "chinese": "/ˌəʊvə'welm/ v.压倒;征服;使不知所措",
+    "example": "overwhelmed by grief"
   },
   {
     "id": 19,
-    "english": "grand",
-    "chinese": "/grænd/ adj.宏伟的;重大的",
-    "example": "The Grand Canyon."
+    "english": "compound",
+    "chinese": "/'kɒmpaʊnd/ n.复合物;混合物",
+    "example": "chemical compound"
   },
   {
     "id": 20,
-    "english": "magnitude",
-    "chinese": "/'mægnɪtju:d/ n.巨大;重大;震级",
-    "example": "An event of great magnitude."
+    "english": "chronic",
+    "chinese": "/'krɒnɪk/ adj.慢性的;长久的",
+    "example": "chronic disease"
   },
   {
     "id": 21,
-    "english": "magnify",
-    "chinese": "/'mægnɪfaɪ/ v.放大;夸大",
-    "example": "Magnifying glass."
+    "english": "diagnose",
+    "chinese": "/'daɪəgnəʊz/ v.诊断;判断",
+    "example": "diagnose a disease"
   },
   {
     "id": 22,
-    "english": "emerge",
-    "chinese": "/i'mɜ:dʒ/ v.出现;浮现;暴露",
-    "example": "The sun emerged from the clouds."
+    "english": "remedy",
+    "chinese": "/'remədi/ n.治疗;补救办法",
+    "example": "a remedy for cold"
   },
   {
     "id": 23,
-    "english": "emergency",
-    "chinese": "/i'mɜ:dʒənsi/ n.突发事件;紧急情况",
-    "example": "In case of emergency."
+    "english": "turbulent",
+    "chinese": "/'tɜ:bjələnt/ adj.动荡的;汹涌的",
+    "example": "turbulent water"
   },
   {
     "id": 24,
-    "english": "submerge",
-    "chinese": "/səb'mɜ:dʒ/ v.淹没;潜入水中",
-    "example": "Submerge the dishes in water."
+    "english": "saturate",
+    "chinese": "/'sætʃəreɪt/ v.使湿透;使饱和",
+    "example": "saturated with water"
   },
   {
     "id": 25,
-    "english": "submarine",
-    "chinese": "/'sʌbməri:n/ n.潜艇 adj.水下的",
-    "example": "Nuclear submarine."
+    "english": "fierce",
+    "chinese": "/fɪəs/ adj.凶猛的;猛烈的",
+    "example": "fierce competition"
   },
   {
     "id": 26,
-    "english": "marine",
-    "chinese": "/mə'ri:n/ adj.海洋的;海产的",
-    "example": "Marine life."
+    "english": "harsh",
+    "chinese": "/hɑ:ʃ/ adj.严酷的;刺耳的",
+    "example": "harsh reality"
   },
   {
     "id": 27,
-    "english": "swamp",
-    "chinese": "/swɒmp/ n.沼泽 v.淹没;应接不暇",
-    "example": "Swamped with work."
+    "english": "adjacent",
+    "chinese": "/ə'dʒeɪsnt/ adj.毗连的;邻近的",
+    "example": "adjacent to the park"
   },
   {
     "id": 28,
-    "english": "overwhelm",
-    "chinese": "/ˌəʊvə'welm/ v.压倒;征服;使不知所措",
-    "example": "Overwhelmed by grief."
+    "english": "adore",
+    "chinese": "/ə'dɔ:(r)/ vt.崇拜,爱慕",
+    "example": "adore her children"
   },
   {
     "id": 29,
-    "english": "compound",
-    "chinese": "/'kɒmpaʊnd/ n.复合物 v.加重;合成",
-    "example": "Chemical compound."
+    "english": "foresee",
+    "chinese": "/fɔ:'si:/ v.预料;预见",
+    "example": "foresee the future"
   },
   {
     "id": 30,
-    "english": "chronic",
-    "chinese": "/'krɒnɪk/ adj.慢性的;长久的",
-    "example": "Chronic pain."
+    "english": "forecast",
+    "chinese": "/'fɔ:kɑ:st/ n.&v. 预测;预报",
+    "example": "weather forecast"
   },
   {
     "id": 31,
-    "english": "benign",
-    "chinese": "/bɪ'naɪn/ adj.良性的;和蔼的",
-    "example": "Benign tumor."
+    "english": "orient",
+    "chinese": "/'ɔ:rient/ v.确定方向 n.东方",
+    "example": "orient oneself"
   },
   {
     "id": 32,
-    "english": "acute",
-    "chinese": "/ə'kju:t/ adj.急性的;严重的;敏锐的",
-    "example": "Acute shortage."
+    "english": "vegetation",
+    "chinese": "/ˌvedʒə'teɪʃn/ n.植物;植被",
+    "example": "dense vegetation"
   },
   {
     "id": 33,
-    "english": "diagnose",
-    "chinese": "/'daɪəgnəʊz/ v.诊断;判断",
-    "example": "Diagnosed with flu."
+    "english": "bleak",
+    "chinese": "/bli:k/ adj.荒凉的;黯淡的",
+    "example": "a bleak future"
   },
   {
     "id": 34,
-    "english": "remedy",
-    "chinese": "/'remədi/ n.治疗;补救办法",
-    "example": "A remedy for colds."
+    "english": "humid",
+    "chinese": "/'hju:mɪd/ adj.潮湿的",
+    "example": "humid weather"
   },
   {
     "id": 35,
-    "english": "clinic",
-    "chinese": "/'klɪnɪk/ n.诊所;门诊部",
-    "example": "Dental clinic."
+    "english": "humble",
+    "chinese": "/'hʌmbl/ adj.谦逊的;卑微的",
+    "example": "humble background"
   },
   {
     "id": 36,
-    "english": "chronicle",
-    "chinese": "/'krɒnɪkl/ n.编年史 v.载入编年史",
-    "example": "The Chronicles of Narnia."
+    "english": "institute",
+    "chinese": "/'ɪnstɪtju:t/ n.学院;研究所 v.建立",
+    "example": "research institute"
   },
   {
     "id": 37,
-    "english": "turbulent",
-    "chinese": "/'tɜ:bjələnt/ adj.动荡的;汹涌的",
-    "example": "Turbulent times."
+    "english": "substitute",
+    "chinese": "/'sʌbstɪtju:t/ n.代替者 v.代替",
+    "example": "substitute teacher"
   },
   {
     "id": 38,
-    "english": "saturate",
-    "chinese": "/'sætʃəreɪt/ v.使湿透;使饱和",
-    "example": "The market is saturated."
+    "english": "constitute",
+    "chinese": "/'kɒnstɪtju:t/ vt.组成,构成",
+    "example": "constitute a threat"
   },
   {
     "id": 39,
-    "english": "fierce",
-    "chinese": "/fɪəs/ adj.凶猛的;猛烈的",
-    "example": "Fierce competition."
+    "english": "administer",
+    "chinese": "/əd'mɪnɪstə(r)/ v.管理;施行",
+    "example": "administer a country"
   },
   {
     "id": 40,
-    "english": "harsh",
-    "chinese": "/hɑ:ʃ/ adj.严酷的;刺耳的",
-    "example": "Harsh reality."
+    "english": "legal",
+    "chinese": "/'li:gl/ adj.法律的;合法的",
+    "example": "legal advice"
+  },
+  {
+    "id": 41,
+    "english": "terrify",
+    "chinese": "/'terɪfaɪ/ v.使恐惧;使惊吓",
+    "example": "terrified of spiders"
+  },
+  {
+    "id": 42,
+    "english": "agony",
+    "chinese": "/'ægəni/ n.极大的痛苦",
+    "example": "in agony"
+  },
+  {
+    "id": 43,
+    "english": "alert",
+    "chinese": "/ə'lɜ:t/ adj.警觉的 n.警戒",
+    "example": "stay alert"
+  },
+  {
+    "id": 44,
+    "english": "trophy",
+    "chinese": "/'trəʊfi/ n.奖品,奖杯",
+    "example": "win a trophy"
+  },
+  {
+    "id": 45,
+    "english": "catastrophe",
+    "chinese": "/kə'tæstrəfi/ n.灾难;灾祸",
+    "example": "ecological catastrophe"
+  },
+  {
+    "id": 46,
+    "english": "raise",
+    "chinese": "/reɪz/ v.提升;举起;饲养",
+    "example": "raise your hand"
+  },
+  {
+    "id": 47,
+    "english": "victory",
+    "chinese": "/'vɪktəri/ n.胜利",
+    "example": "victory over the enemy"
+  },
+  {
+    "id": 48,
+    "english": "virtual",
+    "chinese": "/'vɜ:tʃuəl/ adj.虚拟的;实质上的",
+    "example": "virtual reality"
+  },
+  {
+    "id": 49,
+    "english": "profound",
+    "chinese": "/prə'faʊnd/ adj.深远的;渊博的",
+    "example": "profound impact"
+  },
+  {
+    "id": 50,
+    "english": "artificial",
+    "chinese": "/ˌɑ:tɪ'fɪʃl/ adj.人工的,人造的",
+    "example": "artificial intelligence"
+  },
+  {
+    "id": 51,
+    "english": "sufficient",
+    "chinese": "/sə'fɪʃnt/ adj.足够的",
+    "example": "sufficient evidence"
+  },
+  {
+    "id": 52,
+    "english": "efficient",
+    "chinese": "/ɪ'fɪʃnt/ adj.效率高的",
+    "example": "efficient method"
+  },
+  {
+    "id": 53,
+    "english": "flaw",
+    "chinese": "/flɔ:/ n.瑕疵;缺点",
+    "example": "a flaw in the plan"
+  },
+  {
+    "id": 54,
+    "english": "drawback",
+    "chinese": "/'drɔ:bæk/ n.缺点;不利条件",
+    "example": "main drawback"
+  },
+  {
+    "id": 55,
+    "english": "setback",
+    "chinese": "/'setbæk/ n.挫折;阻碍",
+    "example": "suffer a setback"
+  },
+  {
+    "id": 56,
+    "english": "refer",
+    "chinese": "/rɪ'fɜ:(r)/ v.参考;涉及",
+    "example": "refer to the map"
+  },
+  {
+    "id": 57,
+    "english": "infer",
+    "chinese": "/ɪn'fɜ:(r)/ v.推断;暗示",
+    "example": "infer from the facts"
+  },
+  {
+    "id": 58,
+    "english": "introduce",
+    "chinese": "/ˌɪntrə'dju:s/ v.介绍;引进",
+    "example": "introduce a friend"
+  },
+  {
+    "id": 59,
+    "english": "deduce",
+    "chinese": "/dɪ'dju:s/ v.推论;推断",
+    "example": "deduce the answer"
+  },
+  {
+    "id": 60,
+    "english": "induce",
+    "chinese": "/ɪn'dju:s/ v.引诱;引起",
+    "example": "induce sleep"
+  },
+  {
+    "id": 61,
+    "english": "tempt",
+    "chinese": "/tempt/ v.引诱;吸引",
+    "example": "tempted to eat"
+  },
+  {
+    "id": 62,
+    "english": "attempt",
+    "chinese": "/ə'tempt/ n.&v. 尝试;企图",
+    "example": "attempt to escape"
+  },
+  {
+    "id": 63,
+    "english": "inject",
+    "chinese": "/ɪn'dʒekt/ v.注射;注入",
+    "example": "inject fuel"
+  },
+  {
+    "id": 64,
+    "english": "project",
+    "chinese": "/'prɒdʒekt/ n.项目 /prə'dʒekt/ v.投射",
+    "example": "research project"
+  },
+  {
+    "id": 65,
+    "english": "reject",
+    "chinese": "/rɪ'dʒekt/ v.拒绝;驳回",
+    "example": "reject the offer"
+  },
+  {
+    "id": 66,
+    "english": "prevail",
+    "chinese": "/prɪ'veɪl/ v.盛行;战胜",
+    "example": "truth will prevail"
+  },
+  {
+    "id": 67,
+    "english": "vaccine",
+    "chinese": "/'væksi:n/ n.疫苗",
+    "example": "flu vaccine"
+  },
+  {
+    "id": 68,
+    "english": "immune",
+    "chinese": "/ɪ'mju:n/ adj.免疫的;不受影响的",
+    "example": "immune system"
+  },
+  {
+    "id": 69,
+    "english": "secondary",
+    "chinese": "/'sekəndri/ adj.次要的;中学的",
+    "example": "secondary education"
+  },
+  {
+    "id": 70,
+    "english": "section",
+    "chinese": "/'sekʃn/ n.部分;部门",
+    "example": "section of the book"
+  },
+  {
+    "id": 71,
+    "english": "sector",
+    "chinese": "/'sektə(r)/ n.部门;领域",
+    "example": "private sector"
+  },
+  {
+    "id": 72,
+    "english": "senior",
+    "chinese": "/'si:niə(r)/ adj.高级的;年长的",
+    "example": "senior manager"
+  },
+  {
+    "id": 73,
+    "english": "visualize",
+    "chinese": "/'vɪʒuəlaɪz/ v.想象;构思",
+    "example": "visualize the result"
+  },
+  {
+    "id": 74,
+    "english": "scope",
+    "chinese": "/skəʊp/ n.范围;机会",
+    "example": "scope of the study"
+  },
+  {
+    "id": 75,
+    "english": "descendant",
+    "chinese": "/dɪ'sendənt/ n.后裔;后代",
+    "example": "descendant of a king"
+  },
+  {
+    "id": 76,
+    "english": "offspring",
+    "chinese": "/'ɒfsprɪŋ/ n.子女;后代",
+    "example": "produce offspring"
+  },
+  {
+    "id": 77,
+    "english": "excess",
+    "chinese": "/ɪk'ses/ n.超过;过度",
+    "example": "in excess of"
+  },
+  {
+    "id": 78,
+    "english": "manual",
+    "chinese": "/'mænjuəl/ adj.手工的 n.手册",
+    "example": "manual labor"
+  },
+  {
+    "id": 79,
+    "english": "infect",
+    "chinese": "/ɪn'fekt/ v.传染;感染",
+    "example": "infected with virus"
+  },
+  {
+    "id": 80,
+    "english": "defect",
+    "chinese": "/'di:fekt/ n.缺点;缺陷",
+    "example": "birth defect"
+  },
+  {
+    "id": 81,
+    "english": "effect",
+    "chinese": "/ɪ'fekt/ n.效果;影响",
+    "example": "side effect"
+  },
+  {
+    "id": 82,
+    "english": "pledge",
+    "chinese": "/pledʒ/ v.&n. 保证;发誓",
+    "example": "pledge allegiance"
+  },
+  {
+    "id": 83,
+    "english": "idle",
+    "chinese": "/'aɪdl/ adj.懒惰的;空闲的",
+    "example": "idle chatter"
+  },
+  {
+    "id": 84,
+    "english": "deceive",
+    "chinese": "/dɪ'si:v/ v.欺骗",
+    "example": "deceive the public"
+  },
+  {
+    "id": 85,
+    "english": "perceive",
+    "chinese": "/pə'si:v/ v.察觉;感知",
+    "example": "perceive danger"
+  },
+  {
+    "id": 86,
+    "english": "guilt",
+    "chinese": "/gɪlt/ n.内疚;罪行",
+    "example": "admit guilt"
+  },
+  {
+    "id": 87,
+    "english": "crime",
+    "chinese": "/kraɪm/ n.犯罪",
+    "example": "commit a crime"
+  },
+  {
+    "id": 88,
+    "english": "sue",
+    "chinese": "/sju:/ v.控告;起诉",
+    "example": "sue for damages"
+  },
+  {
+    "id": 89,
+    "english": "pursue",
+    "chinese": "/pə'sju:/ v.追求;追逐",
+    "example": "pursue a career"
+  },
+  {
+    "id": 90,
+    "english": "proof",
+    "chinese": "/pru:f/ n.证据;证明",
+    "example": "proof of identity"
+  }
+  {
+    "id": 91,
+    "english": "entrepreneur",
+    "chinese": "/ˌɒntrəprə'nɜ:(r)/ n.企业家;创业者",
+    "example": "a successful entrepreneur"
+  },
+  {
+    "id": 92,
+    "english": "corporation",
+    "chinese": "/ˌkɔ:pə'reɪʃn/ n.大公司;企业",
+    "example": "multinational corporation"
+  },
+  {
+    "id": 93,
+    "english": "operate",
+    "chinese": "/'ɒpəreɪt/ v.经营;操作;手术",
+    "example": "operate a machine"
+  },
+  {
+    "id": 94,
+    "english": "reciprocal",
+    "chinese": "/rɪ'sɪprəkl/ adj.互惠的;相互的",
+    "example": "reciprocal agreement"
+  },
+  {
+    "id": 95,
+    "english": "current",
+    "chinese": "/'kʌrənt/ adj.当前的 n.水流;电流",
+    "example": "current events"
+  },
+  {
+    "id": 96,
+    "english": "currency",
+    "chinese": "/'kʌrənsi/ n.货币;通货",
+    "example": "foreign currency"
+  },
+  {
+    "id": 97,
+    "english": "finance",
+    "chinese": "/'faɪnæns/ n.财政;金融 v.资助",
+    "example": "Minister of Finance"
+  },
+  {
+    "id": 98,
+    "english": "monopoly",
+    "chinese": "/mə'nɒpəli/ n.垄断;专卖",
+    "example": "state monopoly"
+  },
+  {
+    "id": 99,
+    "english": "wealth",
+    "chinese": "/welθ/ n.财富;财产",
+    "example": "wealth and power"
+  },
+  {
+    "id": 100,
+    "english": "refund",
+    "chinese": "/'ri:fʌnd/ n.退款 v.退还",
+    "example": "full refund"
+  },
+  {
+    "id": 101,
+    "english": "grave",
+    "chinese": "/greɪv/ adj.严重的;严肃的 n.坟墓",
+    "example": "grave danger"
+  },
+  {
+    "id": 102,
+    "english": "grant",
+    "chinese": "/grɑ:nt/ v.授予;承认 n.拨款",
+    "example": "grant a request"
+  },
+  {
+    "id": 103,
+    "english": "relieve",
+    "chinese": "/rɪ'li:v/ v.缓解;解除",
+    "example": "relieve pain"
+  },
+  {
+    "id": 104,
+    "english": "commerce",
+    "chinese": "/'kɒmɜ:s/ n.商业;贸易",
+    "example": "chamber of commerce"
+  },
+  {
+    "id": 105,
+    "english": "commodity",
+    "chinese": "/kə'mɒdəti/ n.商品;日用品",
+    "example": "valuable commodity"
+  },
+  {
+    "id": 106,
+    "english": "spark",
+    "chinese": "/spɑ:k/ n.火花 v.引发",
+    "example": "spark a debate"
+  },
+  {
+    "id": 107,
+    "english": "blush",
+    "chinese": "/blʌʃ/ v.脸红;羞愧",
+    "example": "blush with shame"
+  },
+  {
+    "id": 108,
+    "english": "splash",
+    "chinese": "/splæʃ/ v.溅;泼 n.落水声",
+    "example": "splash water"
+  },
+  {
+    "id": 109,
+    "english": "assemble",
+    "chinese": "/ə'sembl/ v.集合;组装",
+    "example": "assemble a team"
+  },
+  {
+    "id": 110,
+    "english": "appeal",
+    "chinese": "/ə'pi:l/ v.呼吁;吸引;上诉",
+    "example": "appeal to the public"
+  },
+  {
+    "id": 111,
+    "english": "console",
+    "chinese": "/kən'səʊl/ v.安慰;抚慰",
+    "example": "console a friend"
+  },
+  {
+    "id": 112,
+    "english": "absorb",
+    "chinese": "/əb'zɔ:b/ v.吸收;吸引...的注意",
+    "example": "absorb knowledge"
+  },
+  {
+    "id": 113,
+    "english": "assist",
+    "chinese": "/ə'sɪst/ v.帮助;协助",
+    "example": "assist the police"
+  },
+  {
+    "id": 114,
+    "english": "resist",
+    "chinese": "/rɪ'zɪst/ v.抵制;反抗",
+    "example": "resist temptation"
+  },
+  {
+    "id": 115,
+    "english": "consistent",
+    "chinese": "/kən'sɪstənt/ adj.一致的;连续的",
+    "example": "consistent performance"
+  },
+  {
+    "id": 116,
+    "english": "assign",
+    "chinese": "/ə'saɪn/ v.指派;分配",
+    "example": "assign homework"
+  },
+  {
+    "id": 117,
+    "english": "resign",
+    "chinese": "/rɪ'zaɪn/ v.辞职;放弃",
+    "example": "resign from a job"
+  },
+  {
+    "id": 118,
+    "english": "recommend",
+    "chinese": "/ˌrekə'mend/ v.推荐;建议",
+    "example": "recommend a book"
+  },
+  {
+    "id": 119,
+    "english": "exhaust",
+    "chinese": "/ɪg'zɔ:st/ v.耗尽;使精疲力竭",
+    "example": "exhaust resources"
+  },
+  {
+    "id": 120,
+    "english": "fatigue",
+    "chinese": "/fə'ti:g/ n.疲劳;劳累",
+    "example": "mental fatigue"
+  },
+  {
+    "id": 121,
+    "english": "abuse",
+    "chinese": "/ə'bju:s/ v.滥用;虐待",
+    "example": "drug abuse"
+  },
+  {
+    "id": 122,
+    "english": "adopt",
+    "chinese": "/ə'dɒpt/ v.收养;采纳",
+    "example": "adopt a child"
+  },
+  {
+    "id": 123,
+    "english": "adapt",
+    "chinese": "/ə'dæpt/ v.使适应;改编",
+    "example": "adapt to change"
+  },
+  {
+    "id": 124,
+    "english": "achieve",
+    "chinese": "/ə'tʃi:v/ v.实现;获得",
+    "example": "achieve a goal"
+  },
+  {
+    "id": 125,
+    "english": "tend",
+    "chinese": "/tend/ v.倾向;照料",
+    "example": "tend to forget"
+  },
+  {
+    "id": 126,
+    "english": "intend",
+    "chinese": "/ɪn'tend/ v.打算;想要",
+    "example": "intend to go"
+  },
+  {
+    "id": 127,
+    "english": "extend",
+    "chinese": "/ɪk'stend/ v.延长;扩展",
+    "example": "extend the deadline"
+  },
+  {
+    "id": 128,
+    "english": "advocate",
+    "chinese": "/'ædvəkət/ n.拥护者 v.提倡",
+    "example": "advocate peace"
+  },
+  {
+    "id": 129,
+    "english": "acquire",
+    "chinese": "/ə'kwaɪə(r)/ v.获得;学到",
+    "example": "acquire skills"
+  },
+  {
+    "id": 130,
+    "english": "require",
+    "chinese": "/rɪ'kwaɪə(r)/ v.需要;要求",
+    "example": "require help"
+  },
+  {
+    "id": 131,
+    "english": "inquire",
+    "chinese": "/ɪn'kwaɪə(r)/ v.询问;调查",
+    "example": "inquire about the price"
+  },
+  {
+    "id": 132,
+    "english": "afford",
+    "chinese": "/ə'fɔ:d/ v.买得起;承担得起",
+    "example": "can't afford a car"
+  },
+  {
+    "id": 133,
+    "english": "assault",
+    "chinese": "/ə'sɔ:lt/ n.&v. 攻击;袭击",
+    "example": "sexual assault"
+  },
+  {
+    "id": 134,
+    "english": "consult",
+    "chinese": "/kən'sʌlt/ v.咨询;请教",
+    "example": "consult a doctor"
+  },
+  {
+    "id": 135,
+    "english": "compete",
+    "chinese": "/kəm'pi:t/ v.竞争;比赛",
+    "example": "compete for the prize"
+  },
+  {
+    "id": 136,
+    "english": "compile",
+    "chinese": "/kəm'paɪl/ v.汇编;编辑",
+    "example": "compile a list"
+  },
+  {
+    "id": 137,
+    "english": "celebrate",
+    "chinese": "/'selɪbreɪt/ v.庆祝",
+    "example": "celebrate a birthday"
+  },
+  {
+    "id": 138,
+    "english": "emigrate",
+    "chinese": "/'emɪgreɪt/ v.移居国外",
+    "example": "emigrate to Canada"
+  },
+  {
+    "id": 139,
+    "english": "migrate",
+    "chinese": "/maɪ'greɪt/ v.迁徙;移居",
+    "example": "birds migrate south"
+  },
+  {
+    "id": 140,
+    "english": "estimate",
+    "chinese": "/'estɪmeɪt/ v.估计;估价",
+    "example": "estimate the cost"
+  },
+  {
+    "id": 141,
+    "english": "intimate",
+    "chinese": "/'ɪntɪmət/ adj.亲密的;私人的",
+    "example": "intimate friend"
+  },
+  {
+    "id": 142,
+    "english": "grip",
+    "chinese": "/grɪp/ v.紧握;吸引 n.掌握",
+    "example": "grip the rope"
+  },
+  {
+    "id": 143,
+    "english": "grasp",
+    "chinese": "/grɑ:sp/ v.抓住;领会",
+    "example": "grasp the meaning"
+  },
+  {
+    "id": 144,
+    "english": "element",
+    "chinese": "/'elɪmənt/ n.元素;要素",
+    "example": "key element"
+  },
+  {
+    "id": 145,
+    "english": "executive",
+    "chinese": "/ɪg'zekjətɪv/ n.主管 adj.执行的",
+    "example": "chief executive"
+  },
+  {
+    "id": 146,
+    "english": "justify",
+    "chinese": "/'dʒʌstɪfaɪ/ v.证明...正当",
+    "example": "justify the cost"
+  },
+  {
+    "id": 147,
+    "english": "verify",
+    "chinese": "/'verɪfaɪ/ v.核实;查证",
+    "example": "verify the facts"
+  },
+  {
+    "id": 148,
+    "english": "persuade",
+    "chinese": "/pə'sweɪd/ v.说服;劝说",
+    "example": "persuade him to go"
+  },
+  {
+    "id": 149,
+    "english": "postpone",
+    "chinese": "/pə'spəʊn/ v.推迟;延期",
+    "example": "postpone the meeting"
+  },
+  {
+    "id": 150,
+    "english": "democratic",
+    "chinese": "/ˌdemə'krætɪk/ adj.民主的",
+    "example": "democratic election"
+  },
+  {
+    "id": 151,
+    "english": "interview",
+    "chinese": "/'ɪntəvju:/ n.面试;采访",
+    "example": "job interview"
+  },
+  {
+    "id": 152,
+    "english": "interfere",
+    "chinese": "/ˌɪntə'fɪə(r)/ v.干涉;妨碍",
+    "example": "interfere with work"
+  },
+  {
+    "id": 153,
+    "english": "investigate",
+    "chinese": "/ɪn'vestɪgeɪt/ v.调查",
+    "example": "investigate the crime"
+  },
+  {
+    "id": 154,
+    "english": "dwell",
+    "chinese": "/dwel/ v.居住;栖身",
+    "example": "dwell in the city"
+  },
+  {
+    "id": 155,
+    "english": "loan",
+    "chinese": "/ləʊn/ n.贷款;借出",
+    "example": "bank loan"
+  },
+  {
+    "id": 156,
+    "english": "vanish",
+    "chinese": "/'vænɪʃ/ v.消失;绝迹",
+    "example": "vanish into thin air"
+  },
+  {
+    "id": 157,
+    "english": "quest",
+    "chinese": "/kwest/ n.探索;追求",
+    "example": "quest for truth"
+  },
+  {
+    "id": 158,
+    "english": "request",
+    "chinese": "/rɪ'kwest/ n.&v. 请求;要求",
+    "example": "request help"
+  },
+  {
+    "id": 159,
+    "english": "inhabit",
+    "chinese": "/ɪn'hæbɪt/ v.居住于;栖息于",
+    "example": "inhabit the earth"
+  },
+  {
+    "id": 160,
+    "english": "occur",
+    "chinese": "/ə'kɜ:(r)/ v.发生;出现",
+    "example": "it occurred to me"
+  },
+  {
+    "id": 161,
+    "english": "incur",
+    "chinese": "/ɪn'kɜ:(r)/ v.招致;遭受",
+    "example": "incur debts"
+  },
+  {
+    "id": 162,
+    "english": "simulate",
+    "chinese": "/'sɪmjuleɪt/ v.模拟;模仿",
+    "example": "simulate flight"
+  },
+  {
+    "id": 163,
+    "english": "stimulate",
+    "chinese": "/'stɪmjuleɪt/ v.刺激;激励",
+    "example": "stimulate growth"
+  },
+  {
+    "id": 164,
+    "english": "situation",
+    "chinese": "/ˌsɪtʃu'eɪʃn/ n.形势;情况",
+    "example": "difficult situation"
+  },
+  {
+    "id": 165,
+    "english": "suspend",
+    "chinese": "/sə'spend/ v.悬挂;暂停",
+    "example": "suspend production"
+  },
+  {
+    "id": 166,
+    "english": "partner",
+    "chinese": "/'pɑ:tnə(r)/ n.搭档;合伙人",
+    "example": "business partner"
+  },
+  {
+    "id": 167,
+    "english": "unfold",
+    "chinese": "/ʌn'fəʊld/ v.展开;显露",
+    "example": "story unfolds"
+  },
+  {
+    "id": 168,
+    "english": "master",
+    "chinese": "/'mɑ:stə(r)/ v.精通 n.大师",
+    "example": "master a skill"
+  },
+  {
+    "id": 169,
+    "english": "technical",
+    "chinese": "/'teknɪkl/ adj.技术的;工艺的",
+    "example": "technical support"
+  },
+  {
+    "id": 170,
+    "english": "vacant",
+    "chinese": "/'veɪkənt/ adj.空缺的;茫然的",
+    "example": "vacant seat"
+  },
+  {
+    "id": 171,
+    "english": "outline",
+    "chinese": "/'aʊtlaɪn/ n.大纲;轮廓",
+    "example": "brief outline"
+  },
+  {
+    "id": 172,
+    "english": "comment",
+    "chinese": "/'kɒment/ n.评论;意见",
+    "example": "no comment"
+  },
+  {
+    "id": 173,
+    "english": "address",
+    "chinese": "/ə'dres/ v.解决;演说 n.地址",
+    "example": "address the problem"
+  },
+  {
+    "id": 174,
+    "english": "resolve",
+    "chinese": "/rɪ'zɒlv/ v.解决;决心",
+    "example": "resolve a conflict"
+  },
+  {
+    "id": 175,
+    "english": "solution",
+    "chinese": "/sə'lu:ʃn/ n.解决方案;解答",
+    "example": "find a solution"
+  },
+  {
+    "id": 176,
+    "english": "nutrition",
+    "chinese": "/nju'trɪʃn/ n.营养",
+    "example": "poor nutrition"
+  },
+  {
+    "id": 177,
+    "english": "wander",
+    "chinese": "/'wɒndə(r)/ v.漫游;闲逛",
+    "example": "wander around"
+  },
+  {
+    "id": 178,
+    "english": "supply",
+    "chinese": "/sə'plaɪ/ v.供应 n.补给",
+    "example": "supply and demand"
+  },
+  {
+    "id": 179,
+    "english": "implement",
+    "chinese": "/'ɪmplɪment/ v.实施 n.工具",
+    "example": "implement a plan"
+  },
+  {
+    "id": 180,
+    "english": "terminal",
+    "chinese": "/'tɜ:mɪnl/ n.终点站 adj.晚期的",
+    "example": "airport terminal"
+  },
+  {
+    "id": 181,
+    "english": "tie",
+    "chinese": "/taɪ/ v.系;连接 n.领带",
+    "example": "tie a knot"
+  },
+  {
+    "id": 182,
+    "english": "track",
+    "chinese": "/træk/ n.轨道;踪迹 v.追踪",
+    "example": "keep track of"
+  },
+  {
+    "id": 183,
+    "english": "suicide",
+    "chinese": "/'su:ɪsaɪd/ n.自杀",
+    "example": "commit suicide"
+  },
+  {
+    "id": 184,
+    "english": "vitamin",
+    "chinese": "/'vɪtəmɪn/ n.维生素",
+    "example": "Vitamin C"
+  },
+  {
+    "id": 185,
+    "english": "collaborate",
+    "chinese": "/kə'læbəreɪt/ v.合作;协作",
+    "example": "collaborate with others"
+  },
+  {
+    "id": 186,
+    "english": "predict",
+    "chinese": "/prɪ'dɪkt/ v.预言;预测",
+    "example": "predict the weather"
+  },
+  {
+    "id": 187,
+    "english": "contradict",
+    "chinese": "/ˌkɒntrə'dɪkt/ v.反驳;与...矛盾",
+    "example": "contradict oneself"
+  },
+  {
+    "id": 188,
+    "english": "deny",
+    "chinese": "/dɪ'naɪ/ v.否认;拒绝",
+    "example": "deny the truth"
+  },
+  {
+    "id": 189,
+    "english": "insulate",
+    "chinese": "/'ɪnsjuleɪt/ v.绝缘;隔热;隔离",
+    "example": "insulated wire"
+  },
+  {
+    "id": 190,
+    "english": "sole",
+    "chinese": "/səʊl/ adj.唯一的;独有的",
+    "example": "sole purpose"
+  },
+  {
+    "id": 191,
+    "english": "recognize",
+    "chinese": "/'rekəgnaɪz/ v.认出;承认",
+    "example": "recognize a face"
+  },
+  {
+    "id": 192,
+    "english": "private",
+    "chinese": "/'praɪvət/ adj.私人的;私有的",
+    "example": "private life"
+  },
+  {
+    "id": 193,
+    "english": "access",
+    "chinese": "/'ækses/ n.入口;机会 v.存取",
+    "example": "access to information"
+  },
+  {
+    "id": 194,
+    "english": "document",
+    "chinese": "/'dɒkjumənt/ n.文件 v.记录",
+    "example": "official document"
+  },
+  {
+    "id": 195,
+    "english": "bypass",
+    "chinese": "/'baɪpɑ:s/ v.绕过;避开",
+    "example": "bypass the city"
+  },
+  {
+    "id": 196,
+    "english": "boundary",
+    "chinese": "/'baʊndri/ n.边界;界限",
+    "example": "national boundary"
+  },
+  {
+    "id": 197,
+    "english": "margin",
+    "chinese": "/'mɑ:dʒɪn/ n.边缘;页边空白;差额",
+    "example": "narrow margin"
+  },
+  {
+    "id": 198,
+    "english": "scale",
+    "chinese": "/skeɪl/ n.规模;比例;天平",
+    "example": "large scale"
+  },
+  {
+    "id": 199,
+    "english": "statue",
+    "chinese": "/'stætʃu:/ n.雕像;塑像",
+    "example": "Statue of Liberty"
+  },
+  {
+    "id": 200,
+    "english": "utilize",
+    "chinese": "/'ju:təlaɪz/ v.利用;使用",
+    "example": "utilize resources"
   }
 ]
