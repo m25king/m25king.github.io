@@ -1,21 +1,242 @@
-
 [
   {
     "id": 1,
-    "english": "Ambition",
-    "chinese": "雄心，抱负",
-    "example": "His ambition is to become a pilot."
+    "english": "aggressive",
+    "chinese": "/ə'gresiv/ adj.好斗的,侵略性的;有闯劲的",
+    "example": "He is an aggressive salesman."
   },
   {
     "id": 2,
-    "english": "Persistence",
-    "chinese": "坚持，毅力",
-    "example": "Persistence is key to success."
+    "english": "congress",
+    "chinese": "/'kɒŋgres/ n.国会;代表大会;议会",
+    "example": "The power of Congress."
   },
   {
     "id": 3,
-    "english": "Innovation",
-    "chinese": "创新",
-    "example": "Technological innovation changes lives."
+    "english": "conquer",
+    "chinese": "/'kɒŋkə(r)/ v.战胜,征服;攻克",
+    "example": "Love conquers all."
+  },
+  {
+    "id": 4,
+    "english": "eminent",
+    "chinese": "/'emɪnənt/ adj.明显的;杰出的,有名的",
+    "example": "An eminent scientist."
+  },
+  {
+    "id": 5,
+    "english": "prominent",
+    "chinese": "/'prɒmɪnənt/ adj.突出的,卓越的",
+    "example": "A prominent feature of the landscape."
+  },
+  {
+    "id": 6,
+    "english": "barrier",
+    "chinese": "/'bæriə(r)/ n.屏障;障碍物;界线",
+    "example": "Language barrier."
+  },
+  {
+    "id": 7,
+    "english": "barren",
+    "chinese": "/'bærən/ adj.贫瘠的;不育的 n.荒原",
+    "example": "Barren land."
+  },
+  {
+    "id": 8,
+    "english": "embarrass",
+    "chinese": "/ɪm'bærəs/ vt.使尴尬,使难堪",
+    "example": "I didn't mean to embarrass you."
+  },
+  {
+    "id": 9,
+    "english": "awkward",
+    "chinese": "/'ɔ:kwəd/ adj.令人尴尬的;笨拙的",
+    "example": "An awkward silence."
+  },
+  {
+    "id": 10,
+    "english": "bald",
+    "chinese": "/bɔ:ld/ adj.光秃秃的;直截了当的",
+    "example": "A bald statement."
+  },
+  {
+    "id": 11,
+    "english": "bold",
+    "chinese": "/bəʊld/ adj.勇敢的;鲁莽的;粗体的",
+    "example": "A bold plan."
+  },
+  {
+    "id": 12,
+    "english": "disguise",
+    "chinese": "/dɪs'gaɪz/ vt.伪装;掩饰 n.伪装物",
+    "example": "Blessing in disguise."
+  },
+  {
+    "id": 13,
+    "english": "ecological",
+    "chinese": "/ˌi:kə'lɒdʒɪkl/ adj.生态的;生态学的",
+    "example": "Ecological balance."
+  },
+  {
+    "id": 14,
+    "english": "system",
+    "chinese": "/'sɪstəm/ n.体系;制度;系统",
+    "example": "Immune system."
+  },
+  {
+    "id": 15,
+    "english": "scene",
+    "chinese": "/si:n/ n.风景;现场;场景",
+    "example": "Behind the scenes."
+  },
+  {
+    "id": 16,
+    "english": "scenario",
+    "chinese": "/sə'nɑ:riəʊ/ n.设想;剧情梗概;可能的情况",
+    "example": "Worst-case scenario."
+  },
+  {
+    "id": 17,
+    "english": "terrific",
+    "chinese": "/tə'rɪfɪk/ adj.极好的;巨大的",
+    "example": "You look terrific!"
+  },
+  {
+    "id": 18,
+    "english": "magnificent",
+    "chinese": "/mæg'nɪfɪsnt/ adj.壮丽的;宏伟的",
+    "example": "A magnificent view."
+  },
+  {
+    "id": 19,
+    "english": "grand",
+    "chinese": "/grænd/ adj.宏伟的;重大的",
+    "example": "The Grand Canyon."
+  },
+  {
+    "id": 20,
+    "english": "magnitude",
+    "chinese": "/'mægnɪtju:d/ n.巨大;重大;震级",
+    "example": "An event of great magnitude."
+  },
+  {
+    "id": 21,
+    "english": "magnify",
+    "chinese": "/'mægnɪfaɪ/ v.放大;夸大",
+    "example": "Magnifying glass."
+  },
+  {
+    "id": 22,
+    "english": "emerge",
+    "chinese": "/i'mɜ:dʒ/ v.出现;浮现;暴露",
+    "example": "The sun emerged from the clouds."
+  },
+  {
+    "id": 23,
+    "english": "emergency",
+    "chinese": "/i'mɜ:dʒənsi/ n.突发事件;紧急情况",
+    "example": "In case of emergency."
+  },
+  {
+    "id": 24,
+    "english": "submerge",
+    "chinese": "/səb'mɜ:dʒ/ v.淹没;潜入水中",
+    "example": "Submerge the dishes in water."
+  },
+  {
+    "id": 25,
+    "english": "submarine",
+    "chinese": "/'sʌbməri:n/ n.潜艇 adj.水下的",
+    "example": "Nuclear submarine."
+  },
+  {
+    "id": 26,
+    "english": "marine",
+    "chinese": "/mə'ri:n/ adj.海洋的;海产的",
+    "example": "Marine life."
+  },
+  {
+    "id": 27,
+    "english": "swamp",
+    "chinese": "/swɒmp/ n.沼泽 v.淹没;应接不暇",
+    "example": "Swamped with work."
+  },
+  {
+    "id": 28,
+    "english": "overwhelm",
+    "chinese": "/ˌəʊvə'welm/ v.压倒;征服;使不知所措",
+    "example": "Overwhelmed by grief."
+  },
+  {
+    "id": 29,
+    "english": "compound",
+    "chinese": "/'kɒmpaʊnd/ n.复合物 v.加重;合成",
+    "example": "Chemical compound."
+  },
+  {
+    "id": 30,
+    "english": "chronic",
+    "chinese": "/'krɒnɪk/ adj.慢性的;长久的",
+    "example": "Chronic pain."
+  },
+  {
+    "id": 31,
+    "english": "benign",
+    "chinese": "/bɪ'naɪn/ adj.良性的;和蔼的",
+    "example": "Benign tumor."
+  },
+  {
+    "id": 32,
+    "english": "acute",
+    "chinese": "/ə'kju:t/ adj.急性的;严重的;敏锐的",
+    "example": "Acute shortage."
+  },
+  {
+    "id": 33,
+    "english": "diagnose",
+    "chinese": "/'daɪəgnəʊz/ v.诊断;判断",
+    "example": "Diagnosed with flu."
+  },
+  {
+    "id": 34,
+    "english": "remedy",
+    "chinese": "/'remədi/ n.治疗;补救办法",
+    "example": "A remedy for colds."
+  },
+  {
+    "id": 35,
+    "english": "clinic",
+    "chinese": "/'klɪnɪk/ n.诊所;门诊部",
+    "example": "Dental clinic."
+  },
+  {
+    "id": 36,
+    "english": "chronicle",
+    "chinese": "/'krɒnɪkl/ n.编年史 v.载入编年史",
+    "example": "The Chronicles of Narnia."
+  },
+  {
+    "id": 37,
+    "english": "turbulent",
+    "chinese": "/'tɜ:bjələnt/ adj.动荡的;汹涌的",
+    "example": "Turbulent times."
+  },
+  {
+    "id": 38,
+    "english": "saturate",
+    "chinese": "/'sætʃəreɪt/ v.使湿透;使饱和",
+    "example": "The market is saturated."
+  },
+  {
+    "id": 39,
+    "english": "fierce",
+    "chinese": "/fɪəs/ adj.凶猛的;猛烈的",
+    "example": "Fierce competition."
+  },
+  {
+    "id": 40,
+    "english": "harsh",
+    "chinese": "/hɑ:ʃ/ adj.严酷的;刺耳的",
+    "example": "Harsh reality."
   }
 ]
