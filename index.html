@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>m25king的学习主页</title>
+    <style>
+        :root { --primary: #00695C; --bg: #f5f7fa; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; }
+        
+        /* 头部样式 */
+        header { text-align: center; margin-bottom: 40px; }
+        h1 { color: var(--primary); margin-bottom: 5px; }
+        p.subtitle { color: #666; font-size: 0.9rem; }
+
+        /* 卡片容器 */
+        .section-title { font-size: 1.2rem; font-weight: bold; margin: 30px 0 15px; border-left: 5px solid var(--primary); padding-left: 10px; }
+        
+        /* 408 进度表格 */
+        .progress-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 15px; }
+        .subject { display: flex; justify-content: space-between; margin-bottom: 10px; align-items: center; }
+        .subject-name { font-weight: bold; }
+        .progress-bar { background: #eee; height: 10px; border-radius: 5px; overflow: hidden; margin-top: 5px; }
+        .fill { height: 100%; background: var(--primary); width: 0%; transition: width 1s ease-in-out; }
+
+        /* 单词卡片 */
+        .word-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
+        .word-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: transform 0.2s; }
+        .word-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .eng { font-size: 1.4rem; font-weight: bold; color: #2c3e50; }
+        .cn { color: var(--primary); margin-top: 5px; font-size: 1.1rem; }
+        .ex { margin-top: 10px; font-style: italic; color: #7f8c8d; font-size: 0.9rem; border-top: 1px dashed #eee; padding-top: 10px;}
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>m25king 的学习档案</h1>
+        <p class="subtitle">Android App 同步数据 | 408 备考记录</p>
+    </header>
+
+    <div class="section-title">📊 408 备考进度</div>
+    <div class="progress-card">
+        <div class="subject">
+            <span class="subject-name">数据结构</span>
+            <span>20%</span>
+        </div>
+        <div class="progress-bar"><div class="fill" style="width: 20%"></div></div>
+        <br>
+        
+        <div class="subject">
+            <span class="subject-name">计算机组成原理</span>
+            <span>5%</span>
+        </div>
+        <div class="progress-bar"><div class="fill" style="width: 5%"></div></div>
+        <br>
+
+        <div class="subject">
+            <span class="subject-name">操作系统</span>
+            <span>0%</span>
+        </div>
+        <div class="progress-bar"><div class="fill" style="width: 0%"></div></div>
+        <br>
+
+        <div class="subject">
+            <span class="subject-name">计算机网络</span>
+            <span>0%</span>
+        </div>
+        <div class="progress-bar"><div class="fill" style="width: 0%"></div></div>
+    </div>
+
+    <div class="section-title">📖 每日单词 (From GitHub)</div>
+    <div id="word-list" class="word-grid">
+        <p>正在加载数据...</p>
+    </div>
+</div>
+
+<script>
+    // 你的 JSON 地址
+    const url = 'https://raw.githubusercontent.com/m25king/m25king.github.io/main/words.json';
+
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('word-list');
+            container.innerHTML = ''; 
+            
+            data.forEach(word => {
+                const div = document.createElement('div');
+                div.className = 'word-card';
+                div.innerHTML = `
+                    <div class="eng">${word.english}</div>
+                    <div class="cn">${word.chinese}</div>
+                    <div class="ex">${word.example}</div>
+                `;
+                container.appendChild(div);
+            });
+        })
+        .catch(err => {
+            document.getElementById('word-list').innerHTML = '加载失败，请检查网络';
+        });
+</script>
+
+</body>
+</html>
