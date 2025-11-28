@@ -1,0 +1,23 @@
+
+Enter file contents here
+
+[
+  {
+    "id": 1,
+    "english": "Ambition",
+    "chinese": "雄心，抱负",
+    "example": "His ambition is to become a pilot."
+  },
+  {
+    "id": 2,
+    "english": "Persistence",
+    "chinese": "坚持，毅力",
+    "example": "Persistence is key to success."
+  },
+  {
+    "id": 3,
+    "english": "Innovation",
+    "chinese": "创新",
+    "example": "Technological innovation changes lives."
+  }
+]
