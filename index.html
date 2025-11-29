@@ -102,6 +102,46 @@
             document.getElementById('word-list').innerHTML = '加载失败，请检查网络';
         });
 </script>
+<div style="position: fixed; bottom: 20px; right: 20px; width: 300px; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 9999;">
+    <h4 style="margin: 0 0 10px 0;">🤖 AI 考研助教</h4>
+    <textarea id="aiInput" placeholder="输入单词或问题，例如: abandon" style="width: 100%; height: 60px; margin-bottom: 10px; border: 1px solid #ddd; padding: 5px;"></textarea>
+    <button onclick="askAI()" style="width: 100%; background: #007bff; color: white; border: none; padding: 8px; border-radius: 5px; cursor: pointer;">发送给 Gemini</button>
+    <div id="aiResult" style="margin-top: 10px; font-size: 14px; color: #333; max-height: 200px; overflow-y: auto;"></div>
+</div>
 
+<script>
+async function askAI() {
+    const input = document.getElementById('aiInput');
+    const resultDiv = document.getElementById('aiResult');
+    const message = input.value;
+
+    if (!message) return;
+
+    resultDiv.innerText = "正在思考中...";
+    resultDiv.style.color = "#666";
+
+    try {
+        // 请求刚才写的后端
+        const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: `你是考研英语老师，请解释：${message}` })
+        });
+
+        const data = await response.json();
+        
+        if (data.candidates && data.candidates[0].content) {
+            resultDiv.innerText = data.candidates[0].content.parts[0].text;
+            resultDiv.style.color = "#000";
+        } else {
+            resultDiv.innerText = "AI 回复异常：" + JSON.stringify(data);
+        }
+
+    } catch (error) {
+        resultDiv.innerText = "连接失败！请检查 Vercel 部署。";
+        console.error(error);
+    }
+}
+</script>
 </body>
 </html>
