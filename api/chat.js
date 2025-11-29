@@ -11,9 +11,9 @@ export default async function handler(req) {
 
     if (!apiKey) return new Response(JSON.stringify({ error: 'Missing API Key' }), { status: 500 });
 
-    // ✅ 修正：改用 "gemini-2.0-flash" 
-    // 这是目前免费额度最大、速度最快的模型，绝对不会再报额度不足了！
-    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`, {
+    // ✅ 修正点：使用 "gemini-2.0-flash-exp" (实验版)
+    // 实验版通常不需要绑卡，专门给开发者免费测试用！
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${apiKey}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ contents: [{ parts: [{ text: message }] }] })
@@ -21,7 +21,7 @@ export default async function handler(req) {
 
     const data = await response.json();
     
-    // 如果还出错，打印错误
+    // 如果还报错，就把错误打出来
     if (data.error) {
        console.error("Google Error:", data.error);
        return new Response(JSON.stringify({ error: data.error.message }), { status: 500 });
