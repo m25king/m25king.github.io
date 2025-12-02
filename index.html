@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>m25king的学习主页</title>
+    <title>无名狗熊的学习主页</title>
     <style>
         :root { --primary: #00695C; --bg: #f5f7fa; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 20px; color: #333; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding: 20px; color: #333; padding-bottom: 300px; /* 给底部AI留空间 */ }
         .container { max-width: 800px; margin: 0 auto; }
         
         /* 头部样式 */
@@ -17,12 +17,51 @@
         /* 卡片容器 */
         .section-title { font-size: 1.2rem; font-weight: bold; margin: 30px 0 15px; border-left: 5px solid var(--primary); padding-left: 10px; }
         
-        /* 408 进度表格 */
-        .progress-card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 15px; }
-        .subject { display: flex; justify-content: space-between; margin-bottom: 10px; align-items: center; }
+        /* 通用卡片样式 */
+        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 15px; }
+
+        /* 408 进度表格 (可编辑版) */
+        .subject-row { margin-bottom: 15px; }
+        .subject-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
         .subject-name { font-weight: bold; }
+        
+        /* 输入框样式 */
+        input[type="number"] {
+            width: 50px;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            text-align: center;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
         .progress-bar { background: #eee; height: 10px; border-radius: 5px; overflow: hidden; margin-top: 5px; }
-        .fill { height: 100%; background: var(--primary); width: 0%; transition: width 1s ease-in-out; }
+        .fill { height: 100%; background: var(--primary); width: 0%; transition: width 0.5s ease-in-out; }
+
+        /* 学习日志区域 */
+        textarea.log-input {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            resize: vertical;
+            font-family: inherit;
+            box-sizing: border-box; /* 防止撑破容器 */
+            line-height: 1.6;
+        }
+        .btn-save {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+        .btn-save:active { background-color: #004d40; }
 
         /* 单词卡片 */
         .word-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
@@ -31,44 +70,72 @@
         .eng { font-size: 1.4rem; font-weight: bold; color: #2c3e50; }
         .cn { color: var(--primary); margin-top: 5px; font-size: 1.1rem; }
         .ex { margin-top: 10px; font-style: italic; color: #7f8c8d; font-size: 0.9rem; border-top: 1px dashed #eee; padding-top: 10px;}
+        
+        /* AI 助手浮窗样式 */
+        .ai-float-window {
+            position: fixed; bottom: 20px; right: 20px; width: 300px; 
+            background: white; padding: 15px; border-radius: 10px; 
+            box-shadow: 0 0 15px rgba(0,0,0,0.2); z-index: 9999;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>m25king 的学习档案</h1>
-        <p class="subtitle">Android App 同步数据 | 408 备考记录</p>
+        <h1>无名狗熊 的学习档案</h1>
+        <p class="subtitle">Data saved in LocalStorage | 2027 考研加油</p>
     </header>
 
-    <div class="section-title">📊 408 备考进度</div>
-    <div class="progress-card">
-        <div class="subject">
-            <span class="subject-name">数据结构</span>
-            <span>20%</span>
+    <div class="section-title">📊 408 备考进度 (直接修改数字)</div>
+    <div class="card">
+        <div class="subject-row">
+            <div class="subject-header">
+                <span class="subject-name">数据结构</span>
+                <div>
+                    <input type="number" id="input-ds" min="0" max="100" oninput="updateProgress('ds')"> %
+                </div>
+            </div>
+            <div class="progress-bar"><div id="bar-ds" class="fill" style="width: 0%"></div></div>
         </div>
-        <div class="progress-bar"><div class="fill" style="width: 20%"></div></div>
-        <br>
-        
-        <div class="subject">
-            <span class="subject-name">计算机组成原理</span>
-            <span>5%</span>
-        </div>
-        <div class="progress-bar"><div class="fill" style="width: 5%"></div></div>
-        <br>
 
-        <div class="subject">
-            <span class="subject-name">操作系统</span>
-            <span>0%</span>
+        <div class="subject-row">
+            <div class="subject-header">
+                <span class="subject-name">计算机组成原理</span>
+                <div>
+                    <input type="number" id="input-co" min="0" max="100" oninput="updateProgress('co')"> %
+                </div>
+            </div>
+            <div class="progress-bar"><div id="bar-co" class="fill" style="width: 0%"></div></div>
         </div>
-        <div class="progress-bar"><div class="fill" style="width: 0%"></div></div>
-        <br>
 
-        <div class="subject">
-            <span class="subject-name">计算机网络</span>
-            <span>0%</span>
+        <div class="subject-row">
+            <div class="subject-header">
+                <span class="subject-name">操作系统</span>
+                <div>
+                    <input type="number" id="input-os" min="0" max="100" oninput="updateProgress('os')"> %
+                </div>
+            </div>
+            <div class="progress-bar"><div id="bar-os" class="fill" style="width: 0%"></div></div>
         </div>
-        <div class="progress-bar"><div class="fill" style="width: 0%"></div></div>
+
+        <div class="subject-row">
+            <div class="subject-header">
+                <span class="subject-name">计算机网络</span>
+                <div>
+                    <input type="number" id="input-cn" min="0" max="100" oninput="updateProgress('cn')"> %
+                </div>
+            </div>
+            <div class="progress-bar"><div id="bar-cn" class="fill" style="width: 0%"></div></div>
+        </div>
+    </div>
+
+    <div class="section-title">📝 学习日志 (高数/英语/杂记)</div>
+    <div class="card">
+        <textarea id="study-log" class="log-input" placeholder="在此记录今天的高数进度、错题或心得...（点击下方保存按钮，下次来还在）"></textarea>
+        <div style="text-align: right;">
+            <button class="btn-save" onclick="saveLog()">💾 保存日志</button>
+        </div>
     </div>
 
     <div class="section-title">📖 每日单词 (From GitHub)</div>
@@ -77,16 +144,68 @@
     </div>
 </div>
 
-<script>
-    // 你的 JSON 地址
-    const url = 'https://raw.githubusercontent.com/m25king/m25king.github.io/main/words.json';
+<div class="ai-float-window">
+    <h4 style="margin: 0 0 10px 0;">🤖 AI 考研助教</h4>
+    <textarea id="aiInput" placeholder="输入单词或问题，例如: abandon" style="width: 100%; height: 60px; margin-bottom: 10px; border: 1px solid #ddd; padding: 5px;"></textarea>
+    <button onclick="askAI()" style="width: 100%; background: #007bff; color: white; border: none; padding: 8px; border-radius: 5px; cursor: pointer;">发送给 DeepSeek</button>
+    <div id="aiResult" style="margin-top: 10px; font-size: 14px; color: #333; max-height: 200px; overflow-y: auto;"></div>
+</div>
 
+<script>
+    // ============ 功能 1: 进度条逻辑 (自动保存) ============
+    
+    // 页面加载时，从本地存储读取进度
+    window.onload = function() {
+        loadProgress('ds'); // 数据结构
+        loadProgress('co'); // 计组
+        loadProgress('os'); // 操作系统
+        loadProgress('cn'); // 计网
+        
+        // 读取日志
+        const savedLog = localStorage.getItem('study_log_content');
+        if (savedLog) {
+            document.getElementById('study-log').value = savedLog;
+        }
+    };
+
+    function updateProgress(subject) {
+        const val = document.getElementById('input-' + subject).value;
+        // 限制在 0-100 之间
+        if (val > 100) val = 100;
+        if (val < 0) val = 0;
+        
+        // 更新界面
+        document.getElementById('bar-' + subject).style.width = val + '%';
+        
+        // 保存到本地存储
+        localStorage.setItem('progress_' + subject, val);
+    }
+
+    function loadProgress(subject) {
+        const savedVal = localStorage.getItem('progress_' + subject);
+        if (savedVal) {
+            document.getElementById('input-' + subject).value = savedVal;
+            document.getElementById('bar-' + subject).style.width = savedVal + '%';
+        } else {
+            // 默认值
+            document.getElementById('input-' + subject).value = 0;
+        }
+    }
+
+    // ============ 功能 2: 日志保存逻辑 ============
+    function saveLog() {
+        const content = document.getElementById('study-log').value;
+        localStorage.setItem('study_log_content', content);
+        alert('✅ 日志已保存！即使刷新网页也不会丢失。');
+    }
+
+    // ============ 功能 3: 单词加载 (保持不变) ============
+    const url = 'https://raw.githubusercontent.com/m25king/m25king.github.io/main/words.json';
     fetch(url)
         .then(response => response.json())
         .then(data => {
             const container = document.getElementById('word-list');
             container.innerHTML = ''; 
-            
             data.forEach(word => {
                 const div = document.createElement('div');
                 div.className = 'word-card';
@@ -101,47 +220,39 @@
         .catch(err => {
             document.getElementById('word-list').innerHTML = '加载失败，请检查网络';
         });
-</script>
-<div style="position: fixed; bottom: 20px; right: 20px; width: 300px; background: white; padding: 15px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); z-index: 9999;">
-    <h4 style="margin: 0 0 10px 0;">🤖 AI 考研助教</h4>
-    <textarea id="aiInput" placeholder="输入单词或问题，例如: abandon" style="width: 100%; height: 60px; margin-bottom: 10px; border: 1px solid #ddd; padding: 5px;"></textarea>
-    <button onclick="askAI()" style="width: 100%; background: #007bff; color: white; border: none; padding: 8px; border-radius: 5px; cursor: pointer;">发送给 Gemini</button>
-    <div id="aiResult" style="margin-top: 10px; font-size: 14px; color: #333; max-height: 200px; overflow-y: auto;"></div>
-</div>
 
-<script>
-async function askAI() {
-    const input = document.getElementById('aiInput');
-    const resultDiv = document.getElementById('aiResult');
-    const message = input.value;
+    // ============ 功能 4: AI 对话 (保持不变) ============
+    async function askAI() {
+        const input = document.getElementById('aiInput');
+        const resultDiv = document.getElementById('aiResult');
+        const message = input.value;
 
-    if (!message) return;
+        if (!message) return;
 
-    resultDiv.innerText = "正在思考中...";
-    resultDiv.style.color = "#666";
+        resultDiv.innerText = "正在思考中...";
+        resultDiv.style.color = "#666";
 
-    try {
-        // 请求刚才写的后端
-        const response = await fetch('/api/chat', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: `你是考研英语老师，请解释：${message}` })
-        });
+        try {
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: `你是考研英语老师，请解释：${message}` })
+            });
 
-        const data = await response.json();
-        
-        if (data.candidates && data.candidates[0].content) {
-            resultDiv.innerText = data.candidates[0].content.parts[0].text;
-            resultDiv.style.color = "#000";
-        } else {
-            resultDiv.innerText = "AI 回复异常：" + JSON.stringify(data);
+            const data = await response.json();
+            
+            if (data.candidates && data.candidates[0].content) {
+                resultDiv.innerText = data.candidates[0].content.parts[0].text;
+                resultDiv.style.color = "#000";
+            } else {
+                resultDiv.innerText = "AI 回复异常：" + JSON.stringify(data);
+            }
+
+        } catch (error) {
+            resultDiv.innerText = "连接失败！请检查 Vercel 部署。";
+            console.error(error);
         }
-
-    } catch (error) {
-        resultDiv.innerText = "连接失败！请检查 Vercel 部署。";
-        console.error(error);
     }
-}
 </script>
 </body>
 </html>
