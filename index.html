@@ -200,7 +200,8 @@
     }
 
     // ============ 功能 3: 单词加载 (保持不变) ============
-    const url = 'https://raw.githubusercontent.com/m25king/m25king.github.io/main/words.json';
+   // ✅ 修改后的代码 (直接读本地文件，速度快且不需要 VPN)：
+const url = 'words.json';
     fetch(url)
         .then(response => response.json())
         .then(data => {
