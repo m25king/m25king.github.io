@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+    <link rel="stylesheet" href="../../vendor/weui/weui.css"/>
+    <link rel="stylesheet" href="../../vendor/weui/weuix.css"/>
+    <script src="../../vendor/weui/zepto.min.js"></script>
+<style>
+    img{max-width: 100%;}
+</style>
+<body style="padding: 15px;margin: 0 auto;max-width: 720px;">
+    <h3><section style="line-height: 2em;"><p>假设一个 32 位的处理器连接了一个 32 位宽的处理器总线，总线的时钟频率为 400MHz，支持多种总线事务类型。其中，最短的总线事务类型是存储器读事务，需要 4 个时钟周期完成，第 1 个时钟周期送地址和读命令，第 4 个时钟周期取数据；最长的总线事务类型是突发传送 8 次数据，需要 11 个时钟周期完成，第 1 个时钟周期送地址和读命令，第 4 个时钟周期开始连续传送 8 个数据，每个时钟周期传送一次。请回答下列问题：</p><p><br/></p>① 该总线是同步总线还是异步总线，为什么？<br/>② 该总线的最大数据传输率为多少？<br/>③ 若处理器一直持续发起最短总线事务类型，则此时总线的数据传输率是多少？<br/>④ 若处理器一直持续发起最长总线事务类型，则此时总线的数据传输率是多少？<br/>⑤ 若将总线宽度扩展为 64 位，则该总线的最大数据传输率提高到多少？<br/>⑥ 若将总线时钟频率提高到 800MHz，则该总线的最大数据传输率提高到多少？<br/>⑦ 加倍总线宽度和加倍总线时钟频率相比，哪种更好？</section></h3></body>
+</html><h3><section style="line-height: 2em;">存储器总线采用同步通信方式，假定时钟频率为 50MHz 时钟，每个总线事务以突发方式传输 8 个字，以支持块长为 8 个字的 Cache 行读和 Cache 行写，每字 4B。对于读操作，访问顺序是 1 个时钟周期接收地址，3 个时钟周期等待存储器读数，8 个时钟周期用于传输 8 个字。对于写操作，访问顺序是 1 个时钟周期接收地址，2 个时钟周期延迟，8 个时钟周期用于传输 8 个字，3 个时钟周期恢复和写入纠错码<br/>① 该存储器总线的带宽是多少?<br/>② 当全部访问为连续的读操作时，该存储器总线的数据传输率是多少?<br/>③ 当全部访问为连续的写操作时，该存储器总线的数据传输率是多少?</section></h3></body>
+</html>

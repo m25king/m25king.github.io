@@ -1,0 +1,1082 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#f5f6f8">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <title>408 学习资料阅读器</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172033;
+      --muted: #6f7787;
+      --line: #e5e8ee;
+      --panel: #ffffff;
+      --canvas: #f5f6f8;
+      --accent: #3559d9;
+      --accent-soft: #eaf0ff;
+      --accent-deep: #2445bd;
+      --success: #258066;
+      --sidebar-width: 344px;
+      --toolbar-height: 76px;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC",
+        "Microsoft YaHei", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      overflow: hidden;
+      background: var(--canvas);
+      color: var(--ink);
+    }
+
+    button,
+    input { font: inherit; }
+
+    button { -webkit-tap-highlight-color: transparent; }
+
+    .app {
+      display: grid;
+      grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+      height: 100vh;
+      height: 100dvh;
+      min-height: -webkit-fill-available;
+    }
+
+    .sidebar {
+      position: relative;
+      z-index: 20;
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      overflow: hidden;
+      border-right: 1px solid var(--line);
+      background: var(--panel);
+    }
+
+    .sidebar-head {
+      padding: calc(20px + env(safe-area-inset-top)) 18px 14px;
+      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 90% 10%, rgba(53, 89, 217, .12), transparent 35%),
+        linear-gradient(180deg, #fff, #fbfcff);
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 15px;
+    }
+
+    .brand {
+      display: flex;
+      min-width: 0;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 13px;
+      background: linear-gradient(145deg, #4269eb, #2749bd);
+      color: white;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -.04em;
+      box-shadow: 0 7px 18px rgba(53, 89, 217, .24);
+    }
+
+    .brand-copy { min-width: 0; }
+
+    .brand-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 750;
+      letter-spacing: -.02em;
+    }
+
+    .brand-subtitle {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .icon-button,
+    .toolbar-button,
+    .filter-button,
+    .doc-item,
+    .text-button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    .icon-button {
+      display: inline-grid;
+      width: 44px;
+      height: 44px;
+      flex: 0 0 auto;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .icon-button:active,
+    .toolbar-button:active { transform: translateY(1px); }
+
+    .close-sidebar { display: none; }
+
+    .search-wrap {
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .search-icon {
+      position: absolute;
+      top: 50%;
+      left: 13px;
+      width: 18px;
+      height: 18px;
+      transform: translateY(-50%);
+      color: #858d9d;
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      height: 46px;
+      padding: 0 42px 0 40px;
+      border: 1px solid #dfe3ec;
+      border-radius: 13px;
+      outline: none;
+      background: #f8f9fc;
+      color: var(--ink);
+      font-size: 16px;
+      transition: border-color .15s, box-shadow .15s, background .15s;
+    }
+
+    .search-input:focus {
+      border-color: rgba(53, 89, 217, .65);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(53, 89, 217, .1);
+    }
+
+    .clear-search {
+      position: absolute;
+      top: 50%;
+      right: 7px;
+      display: none;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 0;
+      border-radius: 9px;
+      background: transparent;
+      color: #7b8392;
+      cursor: pointer;
+      transform: translateY(-50%);
+    }
+
+    .clear-search.visible { display: grid; }
+
+    .filters {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      padding: 4px;
+      border-radius: 12px;
+      background: #f0f2f7;
+    }
+
+    .filter-button {
+      min-height: 38px;
+      padding: 5px 7px;
+      border-radius: 9px;
+      background: transparent;
+      color: #677083;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .filter-button.active {
+      background: #fff;
+      color: var(--accent-deep);
+      font-weight: 700;
+      box-shadow: 0 1px 5px rgba(21, 33, 63, .09);
+    }
+
+    .catalog-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 40px;
+      padding: 0 18px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .catalog {
+      flex: 1;
+      overflow-x: hidden;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-gutter: stable;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .catalog-group { padding-bottom: 11px; }
+
+    .group-heading {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 42px;
+      padding: 0 17px;
+      border-bottom: 1px solid #edf0f5;
+      background: rgba(248, 249, 252, .96);
+      color: #3c465b;
+      font-size: 13px;
+      font-weight: 750;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .group-count,
+    .section-count { font-variant-numeric: tabular-nums; }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 34px;
+      padding: 9px 18px 5px;
+      color: #8790a1;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .06em;
+    }
+
+    .doc-item {
+      display: grid;
+      width: calc(100% - 14px);
+      min-height: 50px;
+      margin: 2px 7px;
+      padding: 7px 9px;
+      grid-template-columns: 34px minmax(0, 1fr) 22px;
+      align-items: center;
+      gap: 8px;
+      border-radius: 11px;
+      background: transparent;
+      color: var(--ink);
+      text-align: left;
+    }
+
+    .doc-item:hover { background: #f5f7fb; }
+
+    .doc-item.active {
+      background: var(--accent-soft);
+      color: #193aaf;
+    }
+
+    .doc-number {
+      display: inline-grid;
+      min-width: 30px;
+      height: 28px;
+      place-items: center;
+      border-radius: 8px;
+      background: #f0f2f6;
+      color: #737c8d;
+      font-size: 11px;
+      font-weight: 750;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .doc-item.active .doc-number {
+      background: #fff;
+      color: var(--accent-deep);
+      box-shadow: 0 1px 4px rgba(36, 69, 189, .13);
+    }
+
+    .doc-title {
+      overflow: hidden;
+      font-size: 13px;
+      line-height: 1.42;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .visit-marker {
+      color: var(--success);
+      font-size: 14px;
+      font-weight: 800;
+      text-align: center;
+    }
+
+    .no-results {
+      display: none;
+      padding: 46px 24px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    .no-results.visible { display: block; }
+
+    .sidebar-foot {
+      display: flex;
+      min-height: 52px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 18px calc(8px + env(safe-area-inset-bottom));
+      border-top: 1px solid var(--line);
+      background: #fff;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .text-button {
+      min-height: 36px;
+      padding: 0 8px;
+      border-radius: 9px;
+      background: transparent;
+      color: var(--accent-deep);
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .main {
+      display: flex;
+      min-width: 0;
+      min-height: 0;
+      flex-direction: column;
+      background: var(--canvas);
+    }
+
+    .toolbar {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      min-height: var(--toolbar-height);
+      align-items: center;
+      gap: 14px;
+      padding: calc(10px + env(safe-area-inset-top)) calc(16px + env(safe-area-inset-right)) 10px calc(16px + env(safe-area-inset-left));
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, .94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .menu-button { display: none; }
+
+    .current-copy {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .current-context {
+      display: block;
+      overflow: hidden;
+      margin-bottom: 3px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 650;
+      letter-spacing: .02em;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .current-title {
+      overflow: hidden;
+      margin: 0;
+      font-size: clamp(15px, 1.6vw, 19px);
+      font-weight: 730;
+      letter-spacing: -.015em;
+      line-height: 1.25;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .toolbar-actions {
+      display: flex;
+      flex: 0 0 auto;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .toolbar-button {
+      display: inline-flex;
+      min-width: 44px;
+      min-height: 44px;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      color: #39445a;
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .toolbar-button.primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: white;
+    }
+
+    .toolbar-button:disabled {
+      cursor: default;
+      opacity: .38;
+      transform: none;
+    }
+
+    .toolbar-counter {
+      min-width: 58px;
+      color: var(--muted);
+      font-size: 12px;
+      font-variant-numeric: tabular-nums;
+      text-align: center;
+    }
+
+    .reader-shell {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      flex: 1;
+      margin: 14px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 8px 30px rgba(29, 39, 65, .06);
+    }
+
+    .reader-frame {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: #fff;
+    }
+
+    .reader-loading {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 3;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .93);
+      color: var(--muted);
+      font-size: 12px;
+      box-shadow: 0 4px 16px rgba(29, 39, 65, .08);
+    }
+
+    .reader-loading.visible { display: flex; }
+
+    .spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid #dce2f4;
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin .75s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .backdrop {
+      position: fixed;
+      z-index: 15;
+      display: none;
+      background: rgba(13, 20, 36, .38);
+      inset: 0;
+    }
+
+    dialog {
+      width: min(520px, calc(100vw - 30px));
+      max-height: min(620px, calc(100dvh - 40px));
+      padding: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      color: var(--ink);
+      box-shadow: 0 24px 70px rgba(16, 25, 47, .24);
+    }
+
+    dialog::backdrop { background: rgba(13, 20, 36, .46); }
+
+    .dialog-head {
+      display: flex;
+      min-height: 62px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px 8px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .dialog-head h2 { margin: 0; font-size: 18px; }
+
+    .dialog-body {
+      max-height: calc(100dvh - 130px);
+      padding: 18px 20px 24px;
+      overflow-y: auto;
+      color: #4c566a;
+      font-size: 14px;
+      line-height: 1.75;
+    }
+
+    .dialog-body p { margin: 0 0 12px; }
+
+    .dialog-body ol { margin: 6px 0 18px; padding-left: 22px; }
+
+    .dialog-body code {
+      padding: 2px 6px;
+      border-radius: 6px;
+      background: #f0f2f7;
+      color: #263b8e;
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 12px;
+    }
+
+    .notice {
+      padding: 12px 14px;
+      border: 1px solid #dfe5f7;
+      border-radius: 12px;
+      background: #f6f8ff;
+      color: #435072;
+    }
+
+    svg { width: 19px; height: 19px; stroke-width: 2; }
+
+    @media (max-width: 1180px) {
+      .toolbar-label { display: none; }
+      .toolbar-button { padding: 0 11px; }
+    }
+
+    @media (max-width: 900px) {
+      .app { display: block; }
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: min(88vw, 370px);
+        border-right: 0;
+        box-shadow: 12px 0 40px rgba(18, 27, 49, .18);
+        transform: translateX(-104%);
+        transition: transform .22s ease;
+      }
+
+      .app.sidebar-open .sidebar { transform: translateX(0); }
+      .app.sidebar-open .backdrop { display: block; }
+      .close-sidebar { display: inline-grid; }
+      .menu-button { display: inline-grid; }
+      .main { width: 100%; height: 100%; }
+      .reader-shell { margin: 9px; border-radius: 13px; }
+      .toolbar { gap: 10px; }
+    }
+
+    @media (max-width: 620px) {
+      :root { --toolbar-height: 70px; }
+      .toolbar { padding-right: calc(8px + env(safe-area-inset-right)); padding-left: calc(8px + env(safe-area-inset-left)); }
+      .toolbar-actions { gap: 4px; }
+      .toolbar-counter { display: none; }
+      .help-button { display: none; }
+      .current-context { display: none; }
+      .current-title { font-size: 14px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app" id="app">
+    <aside class="sidebar" id="sidebar" aria-label="资料目录">
+      <div class="sidebar-head">
+        <div class="brand-row">
+          <div class="brand">
+            <div class="brand-mark" aria-hidden="true">408</div>
+            <div class="brand-copy">
+              <p class="brand-title">学习资料阅读器</p>
+              <p class="brand-subtitle" id="totalSummary">正在载入目录…</p>
+            </div>
+          </div>
+          <button class="icon-button close-sidebar" id="closeSidebar" type="button" aria-label="关闭目录">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <div class="search-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg>
+          <input class="search-input" id="searchInput" type="search" inputmode="search" autocomplete="off" placeholder="搜索标题或章节…" aria-label="搜索资料">
+          <button class="clear-search" id="clearSearch" type="button" aria-label="清空搜索">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M17 7 7 17M7 7l10 10"/></svg>
+          </button>
+        </div>
+
+        <div class="filters" role="group" aria-label="按科目筛选">
+          <button class="filter-button active" type="button" data-group="all">全部</button>
+          <button class="filter-button" type="button" data-group="os">操作系统</button>
+          <button class="filter-button" type="button" data-group="co">计算机组成</button>
+        </div>
+      </div>
+
+      <div class="catalog-meta">
+        <span id="visibleCount">—</span>
+        <span id="visitedCount">已读 0</span>
+      </div>
+
+      <nav class="catalog" id="catalog" aria-label="全部学习资料"></nav>
+      <div class="no-results" id="noResults">没有找到匹配的资料。<br>换个关键词试试。</div>
+
+      <div class="sidebar-foot">
+        <span>自动记住上次位置</span>
+        <button class="text-button" id="continueButton" type="button">继续阅读</button>
+      </div>
+    </aside>
+
+    <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+
+    <main class="main">
+      <header class="toolbar">
+        <button class="icon-button menu-button" id="menuButton" type="button" aria-label="打开资料目录">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+
+        <div class="current-copy">
+          <span class="current-context" id="currentContext">408 学习资料</span>
+          <h1 class="current-title" id="currentTitle">请选择一篇资料</h1>
+        </div>
+
+        <div class="toolbar-actions">
+          <button class="toolbar-button" id="previousButton" type="button" aria-label="上一篇" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            <span class="toolbar-label">上一篇</span>
+          </button>
+          <span class="toolbar-counter" id="toolbarCounter">— / —</span>
+          <button class="toolbar-button" id="nextButton" type="button" aria-label="下一篇" disabled>
+            <span class="toolbar-label">下一篇</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+          </button>
+          <button class="toolbar-button primary" id="openButton" type="button" aria-label="单独打开当前文章" title="单独打开" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M14 5h5v5M19 5l-9 9"/><path d="M19 14v5H5V5h5"/></svg>
+            <span class="toolbar-label">单独打开</span>
+          </button>
+          <button class="toolbar-button help-button" id="helpButton" type="button" aria-label="使用帮助">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.35 2.35 0 0 1 4.57.8c0 1.57-2.37 1.8-2.37 3.35M12 17h.01"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="reader-shell" aria-label="阅读区域">
+        <div class="reader-loading" id="loadingIndicator"><span class="spinner" aria-hidden="true"></span>正在打开</div>
+        <iframe class="reader-frame" id="readerFrame" title="学习资料正文" allow="fullscreen"></iframe>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="helpDialog">
+    <div class="dialog-head">
+      <h2>GitHub Pages 使用说明</h2>
+      <button class="icon-button" id="closeHelp" type="button" aria-label="关闭帮助">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="dialog-body">
+      <ol>
+        <li>在 iPad Safari 中打开公开网址，无需登录。</li>
+        <li>在左侧目录选择科目、章节，或直接搜索文章标题。</li>
+        <li>使用顶部的上一篇、下一篇和“单独打开”按钮连续阅读。</li>
+      </ol>
+      <p class="notice">这是包含 279 篇 HTML 的公开学习页面。仅供个人学习整理，资料版权归原作者，请勿用于商业用途。原页面中的图片、视频和公式脚本仍来自资料网站。</p>
+      <p>阅读器会在当前浏览器里记住最后打开的文章、访问记录和滚动位置。若内嵌页面显示异常，可点右上角“单独打开”。</p>
+      <p>可在 Safari 的分享菜单中选择“添加到主屏幕”，以后像 App 一样打开。</p>
+    </div>
+  </dialog>
+
+  <script src="catalog.js"></script>
+  <script>
+    (() => {
+      'use strict';
+
+      const docs = Array.isArray(window.STUDY_DOCS) ? window.STUDY_DOCS : [];
+      const docById = new Map(docs.map(doc => [doc.id, doc]));
+      const STORAGE = {
+        last: 'study-reader:v1:last-document',
+        visited: 'study-reader:v1:visited',
+        scrollPrefix: 'study-reader:v1:scroll:'
+      };
+
+      const elements = {
+        app: document.getElementById('app'),
+        catalog: document.getElementById('catalog'),
+        noResults: document.getElementById('noResults'),
+        searchInput: document.getElementById('searchInput'),
+        clearSearch: document.getElementById('clearSearch'),
+        visibleCount: document.getElementById('visibleCount'),
+        visitedCount: document.getElementById('visitedCount'),
+        totalSummary: document.getElementById('totalSummary'),
+        currentContext: document.getElementById('currentContext'),
+        currentTitle: document.getElementById('currentTitle'),
+        toolbarCounter: document.getElementById('toolbarCounter'),
+        previousButton: document.getElementById('previousButton'),
+        nextButton: document.getElementById('nextButton'),
+        openButton: document.getElementById('openButton'),
+        menuButton: document.getElementById('menuButton'),
+        closeSidebar: document.getElementById('closeSidebar'),
+        backdrop: document.getElementById('backdrop'),
+        continueButton: document.getElementById('continueButton'),
+        frame: document.getElementById('readerFrame'),
+        loading: document.getElementById('loadingIndicator'),
+        helpButton: document.getElementById('helpButton'),
+        helpDialog: document.getElementById('helpDialog'),
+        closeHelp: document.getElementById('closeHelp')
+      };
+
+      let groupFilter = 'all';
+      let searchQuery = '';
+      let currentId = null;
+      let currentFrameWindow = null;
+      let currentScrollHandler = null;
+      let scrollSaveTimer = null;
+      let visited = new Set(readJSON(STORAGE.visited, []));
+
+      function readStorage(key, fallback = '') {
+        try { return localStorage.getItem(key) ?? fallback; }
+        catch (_) { return fallback; }
+      }
+
+      function writeStorage(key, value) {
+        try { localStorage.setItem(key, value); }
+        catch (_) { /* Private mode or file restrictions: reading still works. */ }
+      }
+
+      function readJSON(key, fallback) {
+        try {
+          const value = JSON.parse(readStorage(key, ''));
+          return value ?? fallback;
+        } catch (_) { return fallback; }
+      }
+
+      function normalize(value) {
+        return String(value || '').toLocaleLowerCase('zh-CN').replace(/\s+/g, '');
+      }
+
+      function getVisibleDocs() {
+        const needle = normalize(searchQuery);
+        return docs.filter(doc => {
+          if (groupFilter !== 'all' && doc.group !== groupFilter) return false;
+          if (!needle) return true;
+          return normalize(`${doc.number}${doc.title}${doc.section}${doc.groupName}${doc.filename}`).includes(needle);
+        });
+      }
+
+      function makeElement(tag, className, text) {
+        const element = document.createElement(tag);
+        if (className) element.className = className;
+        if (text !== undefined) element.textContent = text;
+        return element;
+      }
+
+      function renderCatalog({ keepScroll = true } = {}) {
+        const previousScroll = keepScroll ? elements.catalog.scrollTop : 0;
+        const visible = getVisibleDocs();
+        const fragment = document.createDocumentFragment();
+        const grouped = new Map();
+
+        visible.forEach(doc => {
+          if (!grouped.has(doc.group)) grouped.set(doc.group, { name: doc.groupName, sections: new Map(), count: 0 });
+          const group = grouped.get(doc.group);
+          if (!group.sections.has(doc.section)) group.sections.set(doc.section, []);
+          group.sections.get(doc.section).push(doc);
+          group.count += 1;
+        });
+
+        grouped.forEach(group => {
+          const groupSection = makeElement('section', 'catalog-group');
+          const groupHeading = makeElement('div', 'group-heading');
+          groupHeading.append(makeElement('span', '', group.name), makeElement('span', 'group-count', String(group.count)));
+          groupSection.append(groupHeading);
+
+          group.sections.forEach((sectionDocs, sectionName) => {
+            const sectionHeading = makeElement('div', 'section-heading');
+            sectionHeading.append(makeElement('span', '', sectionName), makeElement('span', 'section-count', String(sectionDocs.length)));
+            groupSection.append(sectionHeading);
+
+            sectionDocs.forEach(doc => {
+              const button = makeElement('button', `doc-item${doc.id === currentId ? ' active' : ''}`);
+              button.type = 'button';
+              button.dataset.id = doc.id;
+              button.title = `${doc.number}. ${doc.title}`;
+              button.setAttribute('aria-label', `${doc.groupName}，第 ${doc.number} 篇，${doc.title}`);
+              if (doc.id === currentId) button.setAttribute('aria-current', 'page');
+
+              const number = makeElement('span', 'doc-number', String(doc.number));
+              const title = makeElement('span', 'doc-title', doc.title);
+              const marker = makeElement('span', 'visit-marker', visited.has(doc.id) ? '✓' : '');
+              marker.setAttribute('aria-hidden', 'true');
+              button.append(number, title, marker);
+              button.addEventListener('click', () => openDocument(doc.id, 'push', true));
+              groupSection.append(button);
+            });
+          });
+
+          fragment.append(groupSection);
+        });
+
+        elements.catalog.replaceChildren(fragment);
+        elements.catalog.scrollTop = previousScroll;
+        elements.visibleCount.textContent = `显示 ${visible.length} / ${docs.length}`;
+        elements.noResults.classList.toggle('visible', visible.length === 0);
+        elements.catalog.style.display = visible.length ? '' : 'none';
+        elements.clearSearch.classList.toggle('visible', Boolean(searchQuery));
+        updateVisitedCount();
+        updateNavigation();
+      }
+
+      function updateVisitedCount() {
+        const validVisited = [...visited].filter(id => docById.has(id));
+        elements.visitedCount.textContent = `已读 ${validVisited.length}`;
+      }
+
+      function updateActiveItem(scrollIntoView = false) {
+        elements.catalog.querySelectorAll('.doc-item').forEach(item => {
+          const isActive = item.dataset.id === currentId;
+          item.classList.toggle('active', isActive);
+          if (isActive) item.setAttribute('aria-current', 'page');
+          else item.removeAttribute('aria-current');
+          const marker = item.querySelector('.visit-marker');
+          if (marker) marker.textContent = visited.has(item.dataset.id) ? '✓' : '';
+          if (isActive && scrollIntoView) item.scrollIntoView({ block: 'nearest' });
+        });
+        updateVisitedCount();
+      }
+
+      function updateNavigation() {
+        const visible = getVisibleDocs();
+        const index = visible.findIndex(doc => doc.id === currentId);
+        elements.previousButton.disabled = index <= 0;
+        elements.nextButton.disabled = index < 0 || index >= visible.length - 1;
+        elements.toolbarCounter.textContent = index >= 0 ? `${index + 1} / ${visible.length}` : `— / ${visible.length || '—'}`;
+      }
+
+      function saveCurrentScroll() {
+        if (!currentId || !currentFrameWindow) return;
+        try {
+          const y = Math.max(0, Math.round(currentFrameWindow.scrollY || 0));
+          writeStorage(STORAGE.scrollPrefix + currentId, String(y));
+        } catch (_) { /* Cross-origin navigation inside an article: skip position saving. */ }
+      }
+
+      function attachScrollTracking(docId) {
+        if (currentFrameWindow && currentScrollHandler) {
+          try { currentFrameWindow.removeEventListener('scroll', currentScrollHandler); }
+          catch (_) { /* The old iframe document may already be gone. */ }
+        }
+
+        try {
+          currentFrameWindow = elements.frame.contentWindow;
+          const savedY = Number(readStorage(STORAGE.scrollPrefix + docId, '0')) || 0;
+          const restore = () => {
+            if (currentId !== docId) return;
+            try { currentFrameWindow.scrollTo(0, savedY); }
+            catch (_) { /* Ignore cross-origin navigation. */ }
+          };
+
+          restore();
+          window.setTimeout(restore, 400);
+          window.setTimeout(restore, 1200);
+
+          currentScrollHandler = () => {
+            window.clearTimeout(scrollSaveTimer);
+            scrollSaveTimer = window.setTimeout(saveCurrentScroll, 350);
+          };
+          currentFrameWindow.addEventListener('scroll', currentScrollHandler, { passive: true });
+        } catch (_) {
+          currentFrameWindow = null;
+          currentScrollHandler = null;
+        }
+      }
+
+      function setHash(id, mode) {
+        const hash = `#doc=${encodeURIComponent(id)}`;
+        if (mode === 'push') history.pushState({ doc: id }, '', hash);
+        else if (mode === 'replace') history.replaceState({ doc: id }, '', hash);
+      }
+
+      function openDocument(id, historyMode = 'push', scrollItem = false) {
+        const doc = docById.get(id);
+        if (!doc) return;
+
+        saveCurrentScroll();
+        currentId = id;
+        writeStorage(STORAGE.last, id);
+        visited.add(id);
+        writeStorage(STORAGE.visited, JSON.stringify([...visited]));
+
+        elements.currentContext.textContent = `${doc.groupName} · ${doc.section} · 第 ${doc.number} 篇`;
+        elements.currentTitle.textContent = doc.title;
+        elements.openButton.disabled = false;
+        document.title = `${doc.number}. ${doc.title} · 408 学习资料`;
+        elements.frame.dataset.docId = id;
+        elements.loading.classList.add('visible');
+
+        if (elements.frame.getAttribute('src') !== doc.url) {
+          elements.frame.setAttribute('src', doc.url);
+        } else {
+          elements.loading.classList.remove('visible');
+          attachScrollTracking(id);
+        }
+
+        if (historyMode !== 'none') setHash(id, historyMode);
+        updateActiveItem(scrollItem);
+        updateNavigation();
+        closeSidebar();
+      }
+
+      function moveDocument(delta) {
+        const visible = getVisibleDocs();
+        const index = visible.findIndex(doc => doc.id === currentId);
+        const target = visible[index + delta];
+        if (target) openDocument(target.id, 'push', true);
+      }
+
+      function openSidebar() {
+        elements.app.classList.add('sidebar-open');
+        elements.menuButton.setAttribute('aria-expanded', 'true');
+      }
+
+      function closeSidebar() {
+        elements.app.classList.remove('sidebar-open');
+        elements.menuButton.setAttribute('aria-expanded', 'false');
+      }
+
+      function showHelp() {
+        if (typeof elements.helpDialog.showModal === 'function') elements.helpDialog.showModal();
+        else elements.helpDialog.setAttribute('open', '');
+      }
+
+      function hideHelp() {
+        if (typeof elements.helpDialog.close === 'function') elements.helpDialog.close();
+        else elements.helpDialog.removeAttribute('open');
+      }
+
+      function idFromHash() {
+        const match = location.hash.match(/^#doc=([^&]+)/);
+        if (!match) return null;
+        try { return decodeURIComponent(match[1]); }
+        catch (_) { return null; }
+      }
+
+      elements.searchInput.addEventListener('input', event => {
+        searchQuery = event.target.value;
+        renderCatalog({ keepScroll: false });
+      });
+
+      elements.searchInput.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+          elements.searchInput.value = '';
+          searchQuery = '';
+          renderCatalog({ keepScroll: false });
+        } else if (event.key === 'Enter') {
+          const first = getVisibleDocs()[0];
+          if (first) openDocument(first.id, 'push', true);
+        }
+      });
+
+      elements.clearSearch.addEventListener('click', () => {
+        elements.searchInput.value = '';
+        searchQuery = '';
+        renderCatalog({ keepScroll: false });
+        elements.searchInput.focus();
+      });
+
+      document.querySelectorAll('.filter-button').forEach(button => {
+        button.addEventListener('click', () => {
+          groupFilter = button.dataset.group;
+          document.querySelectorAll('.filter-button').forEach(item => item.classList.toggle('active', item === button));
+          renderCatalog({ keepScroll: false });
+        });
+      });
+
+      elements.previousButton.addEventListener('click', () => moveDocument(-1));
+      elements.nextButton.addEventListener('click', () => moveDocument(1));
+      elements.openButton.addEventListener('click', () => {
+        const doc = docById.get(currentId);
+        if (doc) window.open(doc.url, '_blank', 'noopener');
+      });
+      elements.menuButton.addEventListener('click', openSidebar);
+      elements.closeSidebar.addEventListener('click', closeSidebar);
+      elements.backdrop.addEventListener('click', closeSidebar);
+      elements.continueButton.addEventListener('click', () => {
+        const last = readStorage(STORAGE.last, '');
+        openDocument(docById.has(last) ? last : docs[0]?.id, 'push', true);
+      });
+      elements.helpButton.addEventListener('click', showHelp);
+      elements.closeHelp.addEventListener('click', hideHelp);
+      elements.helpDialog.addEventListener('click', event => {
+        if (event.target === elements.helpDialog) hideHelp();
+      });
+
+      elements.frame.addEventListener('load', () => {
+        elements.loading.classList.remove('visible');
+        const loadedId = elements.frame.dataset.docId;
+        if (loadedId) attachScrollTracking(loadedId);
+      });
+
+      window.addEventListener('popstate', () => {
+        const id = idFromHash();
+        if (id && docById.has(id) && id !== currentId) openDocument(id, 'none', true);
+      });
+      window.addEventListener('beforeunload', saveCurrentScroll);
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') saveCurrentScroll();
+      });
+
+      const osCount = docs.filter(doc => doc.group === 'os').length;
+      const coCount = docs.filter(doc => doc.group === 'co').length;
+      elements.totalSummary.textContent = `${docs.length} 篇 · 操作系统 ${osCount} · 计组 ${coCount}`;
+      renderCatalog({ keepScroll: false });
+
+      const hashId = idFromHash();
+      const lastId = readStorage(STORAGE.last, '');
+      const initialId = docById.has(hashId) ? hashId : (docById.has(lastId) ? lastId : docs[0]?.id);
+      if (initialId) openDocument(initialId, 'replace', false);
+      else {
+        elements.currentTitle.textContent = '没有找到 HTML 资料';
+        elements.totalSummary.textContent = '目录为空';
+      }
+    })();
+  </script>
+</body>
+</html>
