@@ -44,23 +44,31 @@
     button { -webkit-tap-highlight-color: transparent; }
 
     .app {
-      display: grid;
-      grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+      display: block;
       height: 100vh;
       height: 100dvh;
       min-height: -webkit-fill-available;
     }
 
     .sidebar {
-      position: relative;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
       z-index: 20;
       display: flex;
+      width: min(88vw, var(--sidebar-width));
       min-width: 0;
       flex-direction: column;
       overflow: hidden;
       border-right: 1px solid var(--line);
       background: var(--panel);
+      box-shadow: 12px 0 40px rgba(18, 27, 49, .18);
+      transform: translateX(-104%);
+      transition: transform .22s ease;
     }
+
+    .app.sidebar-open .sidebar { transform: translateX(0); }
 
     .sidebar-head {
       padding: calc(20px + env(safe-area-inset-top)) 18px 14px;
@@ -139,7 +147,41 @@
     .icon-button:active,
     .toolbar-button:active { transform: translateY(1px); }
 
-    .close-sidebar { display: none; }
+    .close-sidebar { display: inline-grid; }
+
+    .collection-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 13px;
+      padding: 5px;
+      border: 1px solid #e2e6f0;
+      border-radius: 14px;
+      background: #f7f8fb;
+    }
+
+    .collection-link {
+      display: flex;
+      min-width: 0;
+      min-height: 42px;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 7px 9px;
+      border-radius: 10px;
+      color: #586176;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .collection-link.active {
+      background: #fff;
+      color: var(--accent-deep);
+      box-shadow: 0 3px 12px rgba(35, 52, 100, .09);
+    }
+
+    .collection-link svg { width: 17px; height: 17px; }
 
     .search-wrap {
       position: relative;
@@ -367,6 +409,8 @@
 
     .main {
       display: flex;
+      width: 100%;
+      height: 100%;
       min-width: 0;
       min-height: 0;
       flex-direction: column;
@@ -387,7 +431,7 @@
       -webkit-backdrop-filter: blur(14px);
     }
 
-    .menu-button { display: none; }
+    .menu-button { display: inline-grid; }
 
     .current-copy {
       min-width: 0;
@@ -438,6 +482,7 @@
       color: #39445a;
       font-size: 13px;
       font-weight: 650;
+      text-decoration: none;
     }
 
     .toolbar-button.primary {
@@ -514,9 +559,19 @@
     .backdrop {
       position: fixed;
       z-index: 15;
-      display: none;
+      display: block;
       background: rgba(13, 20, 36, .38);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .22s ease, visibility .22s ease;
+      visibility: hidden;
       inset: 0;
+    }
+
+    .app.sidebar-open .backdrop {
+      opacity: 1;
+      pointer-events: auto;
+      visibility: visible;
     }
 
     dialog {
@@ -581,24 +636,11 @@
     }
 
     @media (max-width: 900px) {
-      .app { display: block; }
-
       .sidebar {
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
         width: min(88vw, 370px);
         border-right: 0;
-        box-shadow: 12px 0 40px rgba(18, 27, 49, .18);
-        transform: translateX(-104%);
-        transition: transform .22s ease;
       }
 
-      .app.sidebar-open .sidebar { transform: translateX(0); }
-      .app.sidebar-open .backdrop { display: block; }
-      .close-sidebar { display: inline-grid; }
-      .menu-button { display: inline-grid; }
       .main { width: 100%; height: 100%; }
       .reader-shell { margin: 9px; border-radius: 13px; }
       .toolbar { gap: 10px; }
@@ -621,13 +663,13 @@
 </head>
 <body>
   <div class="app" id="app">
-    <aside class="sidebar" id="sidebar" aria-label="资料目录">
+    <aside class="sidebar" id="sidebar" aria-label="资料目录" aria-hidden="true">
       <div class="sidebar-head">
         <div class="brand-row">
           <div class="brand">
             <div class="brand-mark" aria-hidden="true">408</div>
             <div class="brand-copy">
-              <p class="brand-title">学习资料阅读器</p>
+              <p class="brand-title">408 学习合集</p>
               <p class="brand-subtitle" id="totalSummary">正在载入目录…</p>
             </div>
           </div>
@@ -635,6 +677,17 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
           </button>
         </div>
+
+        <nav class="collection-nav" aria-label="学习合集切换">
+          <a class="collection-link active" href="index.html" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22Z"/><path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22Z"/></svg>
+            资料阅读
+          </a>
+          <a class="collection-link" href="practice.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M8 4h8M9 2h6v4H9z"/><path d="M6 4H4v18h16V4h-2M8 11l2 2 4-4M8 17h8"/></svg>
+            题库答题
+          </a>
+        </nav>
 
         <div class="search-wrap">
           <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.4-3.4"/></svg>
@@ -660,16 +713,16 @@
       <div class="no-results" id="noResults">没有找到匹配的资料。<br>换个关键词试试。</div>
 
       <div class="sidebar-foot">
-        <span>自动记住上次位置</span>
+        <span>左边缘右滑可打开</span>
         <button class="text-button" id="continueButton" type="button">继续阅读</button>
       </div>
     </aside>
 
     <div class="backdrop" id="backdrop" aria-hidden="true"></div>
 
-    <main class="main">
+    <main class="main" id="mainContent">
       <header class="toolbar">
-        <button class="icon-button menu-button" id="menuButton" type="button" aria-label="打开资料目录">
+        <button class="icon-button menu-button" id="menuButton" type="button" aria-label="打开资料目录" aria-controls="sidebar" aria-expanded="false">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
 
@@ -692,6 +745,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M14 5h5v5M19 5l-9 9"/><path d="M19 14v5H5V5h5"/></svg>
             <span class="toolbar-label">单独打开</span>
           </button>
+          <a class="toolbar-button" href="practice.html" aria-label="打开题库答题" title="题库答题">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M8 4h8M9 2h6v4H9z"/><path d="M6 4H4v18h16V4h-2M8 11l2 2 4-4M8 17h8"/></svg>
+            <span class="toolbar-label">题库</span>
+          </a>
           <button class="toolbar-button help-button" id="helpButton" type="button" aria-label="使用帮助">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.8 9a2.35 2.35 0 0 1 4.57.8c0 1.57-2.37 1.8-2.37 3.35M12 17h.01"/></svg>
           </button>
@@ -715,7 +772,8 @@
     <div class="dialog-body">
       <ol>
         <li>在 iPad Safari 中打开公开网址，无需登录。</li>
-        <li>在左侧目录选择科目、章节，或直接搜索文章标题。</li>
+        <li>点左上角菜单，或从屏幕左边缘向右滑，打开可侧拉的资料目录。</li>
+        <li>通过“资料阅读 / 题库答题”切换合集；题库只用于本地导入 408 做题本。</li>
         <li>使用顶部的上一篇、下一篇和“单独打开”按钮连续阅读。</li>
       </ol>
       <p class="notice">这是包含 279 篇 HTML 的公开学习页面。仅供个人学习整理，资料版权归原作者，请勿用于商业用途。原页面中的图片、视频和公式脚本仍来自资料网站。</p>
@@ -739,6 +797,8 @@
 
       const elements = {
         app: document.getElementById('app'),
+        sidebar: document.getElementById('sidebar'),
+        main: document.getElementById('mainContent'),
         catalog: document.getElementById('catalog'),
         noResults: document.getElementById('noResults'),
         searchInput: document.getElementById('searchInput'),
@@ -974,11 +1034,50 @@
       function openSidebar() {
         elements.app.classList.add('sidebar-open');
         elements.menuButton.setAttribute('aria-expanded', 'true');
+        elements.sidebar.setAttribute('aria-hidden', 'false');
+        elements.sidebar.inert = false;
+        elements.main.inert = true;
+        elements.backdrop.setAttribute('aria-hidden', 'false');
+        window.setTimeout(() => elements.closeSidebar.focus(), 20);
       }
 
-      function closeSidebar() {
+      function closeSidebar(returnFocus = false) {
+        const focusWasInSidebar = elements.sidebar.contains(document.activeElement);
         elements.app.classList.remove('sidebar-open');
         elements.menuButton.setAttribute('aria-expanded', 'false');
+        elements.sidebar.setAttribute('aria-hidden', 'true');
+        elements.sidebar.inert = true;
+        elements.main.inert = false;
+        elements.backdrop.setAttribute('aria-hidden', 'true');
+        if (returnFocus || focusWasInSidebar) elements.menuButton.focus();
+      }
+
+      function setupSwipeDrawer() {
+        let startX = null;
+        let startY = null;
+        let startedOpen = false;
+
+        document.addEventListener('touchstart', event => {
+          if (event.touches.length !== 1) return;
+          const touch = event.touches[0];
+          const isOpen = elements.app.classList.contains('sidebar-open');
+          if (!isOpen && touch.clientX > 28) return;
+          startX = touch.clientX;
+          startY = touch.clientY;
+          startedOpen = isOpen;
+        }, { passive: true });
+
+        document.addEventListener('touchend', event => {
+          if (startX === null || !event.changedTouches.length) return;
+          const touch = event.changedTouches[0];
+          const deltaX = touch.clientX - startX;
+          const deltaY = touch.clientY - startY;
+          startX = null;
+          startY = null;
+          if (Math.abs(deltaX) < 56 || Math.abs(deltaX) <= Math.abs(deltaY) * 1.25) return;
+          if (!startedOpen && deltaX > 0) openSidebar();
+          if (startedOpen && deltaX < 0) closeSidebar();
+        }, { passive: true });
       }
 
       function showHelp() {
@@ -1038,6 +1137,9 @@
       elements.menuButton.addEventListener('click', openSidebar);
       elements.closeSidebar.addEventListener('click', closeSidebar);
       elements.backdrop.addEventListener('click', closeSidebar);
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && elements.app.classList.contains('sidebar-open')) closeSidebar();
+      });
       elements.continueButton.addEventListener('click', () => {
         const last = readStorage(STORAGE.last, '');
         openDocument(docById.has(last) ? last : docs[0]?.id, 'push', true);
@@ -1066,6 +1168,8 @@
       const osCount = docs.filter(doc => doc.group === 'os').length;
       const coCount = docs.filter(doc => doc.group === 'co').length;
       elements.totalSummary.textContent = `${docs.length} 篇 · 操作系统 ${osCount} · 计组 ${coCount}`;
+      elements.sidebar.inert = true;
+      setupSwipeDrawer();
       renderCatalog({ keepScroll: false });
 
       const hashId = idFromHash();

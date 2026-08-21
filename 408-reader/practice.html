@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#f5f6f8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' blob: data:; connect-src 'none'; img-src 'self' blob: data:; media-src 'self' blob: data:; object-src blob:; frame-src blob:; script-src 'self'; style-src 'self'; font-src 'self' data:; form-action 'none'; base-uri 'none'">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="practice.css">
+  <title>408 个人题库</title>
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">跳到主要内容</a>
+
+  <div class="app" id="app">
+    <aside class="sidebar" id="sidebar" aria-label="408 题库目录" aria-hidden="true">
+      <div class="sidebar-head">
+        <div class="brand-row">
+          <div class="brand">
+            <div class="brand-mark" aria-hidden="true">408</div>
+            <div class="brand-copy">
+              <p class="brand-title">个人题库</p>
+              <p class="brand-subtitle" id="librarySummary">仅保存在这台设备</p>
+            </div>
+          </div>
+          <button class="icon-button" id="closeSidebar" type="button" aria-label="关闭题库目录">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <nav class="collection-nav" aria-label="学习合集切换">
+          <a class="collection-link" href="index.html">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22zM20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22z"/></svg>
+            <span>学习资料</span>
+          </a>
+          <a class="collection-link active" href="practice.html" aria-current="page">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M8 4h12v16H8zM4 8h4M4 12h4M4 16h4"/><path d="m12 11 2 2 3.5-4"/></svg>
+            <span>408 题库</span>
+          </a>
+        </nav>
+
+        <div class="privacy-note">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 3 5 6v5c0 4.7 2.8 8 7 10 4.2-2 7-5.3 7-10V6z"/><path d="m9.5 12 1.7 1.7 3.8-4"/></svg>
+          <p><strong>本地个人使用</strong><br>PDF、答案与笔记不会上传，也不会写入公开仓库。</p>
+        </div>
+      </div>
+
+      <div class="subject-filter" id="subjectFilter" role="group" aria-label="按 408 科目筛选">
+        <button class="subject-button active" type="button" data-subject="all" aria-pressed="true">全部</button>
+        <button class="subject-button" type="button" data-subject="ds" aria-pressed="false">数据结构</button>
+        <button class="subject-button" type="button" data-subject="co" aria-pressed="false">计算机组成</button>
+        <button class="subject-button" type="button" data-subject="os" aria-pressed="false">操作系统</button>
+        <button class="subject-button" type="button" data-subject="cn" aria-pressed="false">计算机网络</button>
+      </div>
+
+      <div class="workbook-list-head">
+        <span>我的题本</span>
+        <span id="visibleWorkbookCount">0 本</span>
+      </div>
+      <nav class="workbook-list" id="workbookList" aria-label="本地题本"></nav>
+      <div class="sidebar-empty" id="sidebarEmpty">还没有本地题本。<br>点下方按钮导入 PDF。</div>
+
+      <div class="sidebar-foot">
+        <button class="primary-button full-width" id="sidebarImportButton" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 15v5h14v-5"/></svg>
+          导入 PDF 题本
+        </button>
+        <p>请只导入你有权在个人设备上使用的资料。</p>
+      </div>
+    </aside>
+
+    <button class="backdrop" id="backdrop" type="button" aria-label="关闭题库目录" aria-hidden="true" tabindex="-1"></button>
+    <div class="edge-swipe-zone" id="edgeSwipeZone" aria-hidden="true"></div>
+
+    <main class="main" id="mainContent" tabindex="-1">
+      <header class="toolbar">
+        <button class="icon-button" id="menuButton" type="button" aria-label="打开题库目录" aria-controls="sidebar" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+
+        <div class="current-copy">
+          <span class="current-context" id="currentContext">408 个人题库</span>
+          <h1 class="current-title" id="currentTitle">本地 PDF 答题</h1>
+        </div>
+
+        <div class="toolbar-actions">
+          <button class="toolbar-button" id="importPdfButton" type="button" aria-label="导入 PDF 题本" title="导入题本">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 15v5h14v-5"/></svg>
+            <span class="toolbar-label">导入题本</span>
+          </button>
+          <button class="toolbar-button" id="dataButton" type="button" aria-label="备份或恢复答题进度" title="备份进度" aria-haspopup="dialog">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="m8 10 4 3 4-3"/></svg>
+            <span class="toolbar-label">备份进度</span>
+          </button>
+          <a class="toolbar-button" href="index.html" aria-label="返回学习资料">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22zM20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22z"/></svg>
+            <span class="toolbar-label">学习资料</span>
+          </a>
+        </div>
+      </header>
+
+      <section class="home-view" id="homeView" aria-labelledby="homeTitle">
+        <div class="welcome-card">
+          <div class="welcome-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 3h12v18H6z"/><path d="M9 7h6M9 11h6M9 15h3"/></svg>
+          </div>
+          <div>
+            <p class="eyebrow">408 · 本地题本</p>
+            <h2 id="homeTitle">导入 PDF，建立自己的答题记录</h2>
+            <p>题本保存在浏览器的本地数据库；作答、收藏和笔记保存在本机。网站没有上传接口，也不会读取你的网盘。</p>
+          </div>
+          <button class="primary-button" id="emptyImportButton" type="button">选择 PDF 题本</button>
+        </div>
+
+        <div class="stats-grid" aria-label="题库统计">
+          <article class="stat-card"><span>本地题本</span><strong id="bookCountStat">0</strong><small>本</small></article>
+          <article class="stat-card"><span>已作答</span><strong id="answeredCountStat">0</strong><small>题</small></article>
+          <article class="stat-card"><span>收藏</span><strong id="favoriteCountStat">0</strong><small>题</small></article>
+          <article class="stat-card"><span>存储占用</span><strong id="storageStat">—</strong><small id="storageLimitStat">仅本机</small></article>
+        </div>
+
+        <div class="subject-cards" aria-label="408 四科">
+          <article><span class="subject-code">DS</span><div><h3>数据结构</h3><p id="dsCount">0 本题本</p></div></article>
+          <article><span class="subject-code">CO</span><div><h3>计算机组成原理</h3><p id="coCount">0 本题本</p></div></article>
+          <article><span class="subject-code">OS</span><div><h3>操作系统</h3><p id="osCount">0 本题本</p></div></article>
+          <article><span class="subject-code">CN</span><div><h3>计算机网络</h3><p id="cnCount">0 本题本</p></div></article>
+        </div>
+
+        <details class="local-details">
+          <summary>本地保存与版权说明</summary>
+          <div>
+            <p>本站公开部分只有答题工具，不附带任何商业教辅题目。你选择的 PDF、可选答案表、作答记录与笔记只存入当前浏览器。</p>
+            <p>Safari 清理网站数据、使用无痕模式或更换设备后，本地内容可能丢失。建议定期导出进度；PDF 原文件仍请自行妥善保存。</p>
+          </div>
+        </details>
+      </section>
+
+      <section class="practice-view" id="practiceView" hidden aria-label="PDF 答题工作区">
+        <section class="pdf-panel" aria-labelledby="pdfPanelTitle">
+          <div class="panel-head">
+            <div>
+              <span class="panel-kicker" id="pdfSubjectLabel">408</span>
+              <h2 id="pdfPanelTitle">PDF 题本</h2>
+            </div>
+            <div class="panel-actions">
+              <a class="small-button" id="openPdfLink" href="#" target="_blank" rel="noopener" aria-label="在新窗口打开 PDF">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M14 5h5v5M19 5l-9 9"/><path d="M19 14v5H5V5h5"/></svg>
+                单独打开
+              </a>
+              <button class="small-button danger-button" id="deleteWorkbookButton" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M7 7l1 13h8l1-13"/></svg>
+                删除
+              </button>
+            </div>
+          </div>
+          <div class="pdf-shell">
+            <div class="pdf-loading" id="pdfLoading" role="status">正在从本机打开 PDF…</div>
+            <iframe id="pdfFrame" title="本地 PDF 题本" aria-describedby="pdfFallback"></iframe>
+          </div>
+          <p class="pdf-fallback" id="pdfFallback">如果 iPad 内嵌预览只显示第一页，请点“单独打开”，用 Safari 原生 PDF 阅读器翻页。</p>
+        </section>
+
+        <section class="answer-panel" aria-labelledby="questionTitle">
+          <div class="question-head">
+            <div>
+              <p class="panel-kicker" id="questionProgressText">已答 0 / 0</p>
+              <h2 id="questionTitle">第 1 题</h2>
+            </div>
+            <button class="favorite-button" id="favoriteButton" type="button" aria-pressed="false">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"/></svg>
+              <span>收藏</span>
+            </button>
+          </div>
+
+          <progress class="answer-progress" id="answerProgress" max="1" value="0" aria-labelledby="questionProgressText">0%</progress>
+
+          <fieldset class="answer-fieldset">
+            <legend>选择题可填 A–E；综合题可在下方标记完成</legend>
+            <div class="answer-options" id="answerOptions">
+              <button class="answer-option" type="button" data-choice="A" aria-pressed="false"><span>A</span><strong>选 A</strong></button>
+              <button class="answer-option" type="button" data-choice="B" aria-pressed="false"><span>B</span><strong>选 B</strong></button>
+              <button class="answer-option" type="button" data-choice="C" aria-pressed="false"><span>C</span><strong>选 C</strong></button>
+              <button class="answer-option" type="button" data-choice="D" aria-pressed="false"><span>D</span><strong>选 D</strong></button>
+              <button class="answer-option" type="button" data-choice="E" aria-pressed="false"><span>E</span><strong>选 E</strong></button>
+            </div>
+          </fieldset>
+
+          <div class="answer-feedback" id="answerFeedback" role="status" aria-live="polite">尚未作答</div>
+
+          <div class="note-wrap">
+            <label for="questionNote">本题笔记 <span>自动保存在本机</span></label>
+            <textarea id="questionNote" maxlength="5000" rows="3" placeholder="记录易错点、页码或解题思路…"></textarea>
+          </div>
+
+          <div class="question-actions">
+            <button class="secondary-button" id="completeQuestionButton" type="button" aria-pressed="false">标记完成</button>
+            <button class="secondary-button" id="clearAnswerButton" type="button">清除答案</button>
+            <button class="secondary-button" id="showGridButton" type="button" aria-expanded="true" aria-controls="questionNavigator">题号导航</button>
+            <button class="primary-button" id="finishButton" type="button">查看结果</button>
+          </div>
+
+          <div class="question-navigator" id="questionNavigator">
+            <div class="navigator-head">
+              <strong>题号</strong>
+              <label for="gridFilter">筛选</label>
+              <select id="gridFilter">
+                <option value="all">全部题目</option>
+                <option value="unanswered">未作答</option>
+                <option value="wrong" id="wrongFilterOption">只看错题</option>
+                <option value="favorite">我的收藏</option>
+              </select>
+            </div>
+            <div class="question-grid" id="questionGrid" aria-label="选择题号"></div>
+            <p class="grid-empty" id="gridEmpty" hidden>当前筛选下没有题目。</p>
+          </div>
+
+          <div class="pager">
+            <button class="pager-button" id="previousQuestionButton" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+              上一题
+            </button>
+            <span id="pagerCounter">1 / 1</span>
+            <button class="pager-button primary" id="nextQuestionButton" type="button">
+              下一题
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <input id="pdfInput" type="file" accept="application/pdf,.pdf" hidden>
+  <input id="progressInput" type="file" accept="application/json,.json" hidden>
+
+  <dialog id="importDialog" aria-labelledby="importDialogTitle">
+    <form id="importForm">
+      <div class="dialog-head">
+        <div>
+          <p class="panel-kicker">仅在当前浏览器处理</p>
+          <h2 id="importDialogTitle">导入 PDF 题本</h2>
+        </div>
+        <button class="icon-button" id="cancelImportButton" type="button" aria-label="取消导入">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="dialog-body">
+        <div class="selected-file" id="selectedFileSummary" role="status" aria-live="polite">尚未选择文件</div>
+        <label class="field-label" for="workbookTitle">题本名称</label>
+        <input class="field-input" id="workbookTitle" name="title" maxlength="100" required autocomplete="off">
+
+        <div class="field-grid">
+          <div>
+            <label class="field-label" for="workbookSubject">所属科目</label>
+            <select class="field-input" id="workbookSubject" name="subject" required>
+              <option value="ds">数据结构</option>
+              <option value="co">计算机组成原理</option>
+              <option value="os">操作系统</option>
+              <option value="cn">计算机网络</option>
+            </select>
+          </div>
+          <div>
+            <label class="field-label" for="questionCount">题目数量</label>
+            <input class="field-input" id="questionCount" name="questionCount" type="number" inputmode="numeric" min="1" max="5000" required placeholder="例如 100">
+          </div>
+        </div>
+
+        <label class="field-label" for="answerKey">答案表 <span>选填</span></label>
+        <textarea class="field-input answer-key-input" id="answerKey" name="answerKey" rows="4" spellcheck="false" aria-describedby="answerKeyHelp" placeholder="例如：ABCDABCD，或 A, B, C, D；未知答案写 -"></textarea>
+        <p class="field-help" id="answerKeyHelp">按题号顺序填写 A–E。可连续输入，也可用空格、逗号或换行分隔；数量须与题目数一致。</p>
+
+        <label class="confirm-row">
+          <input id="rightsConfirm" type="checkbox" required>
+          <span>我确认该文件仅供个人学习，并且不会由本站上传或公开分享。</span>
+        </label>
+        <div class="form-error" id="importError" role="alert"></div>
+      </div>
+      <div class="dialog-actions">
+        <button class="secondary-button" id="chooseAnotherButton" type="button">重新选择</button>
+        <button class="primary-button" id="confirmImportButton" type="submit">保存到本机</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dataDialog" aria-labelledby="dataDialogTitle">
+    <div class="dialog-head">
+      <div>
+        <p class="panel-kicker">不包含 PDF 或答案表</p>
+        <h2 id="dataDialogTitle">备份答题进度</h2>
+      </div>
+      <button class="icon-button" id="closeDataButton" type="button" aria-label="关闭进度备份">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="dialog-body">
+      <p>导出的 JSON 只包含作答、收藏、笔记和题本匹配信息，不包含 PDF 文件与答案表。</p>
+      <div class="data-actions">
+        <button class="data-action" id="exportProgressButton" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M5 20h14"/></svg>
+          <span><strong>导出进度</strong><small>保存 JSON 备份文件</small></span>
+        </button>
+        <button class="data-action" id="importProgressButton" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M5 20h14"/></svg>
+          <span><strong>导入进度</strong><small>匹配已经导入的同一 PDF</small></span>
+        </button>
+      </div>
+      <p class="notice-text">请先在新设备导入原 PDF 题本，再导入进度 JSON。没有匹配题本的记录会被安全跳过。</p>
+      <div class="form-error" id="dataMessage" role="status" aria-live="polite"></div>
+    </div>
+  </dialog>
+
+  <dialog id="resultDialog" aria-labelledby="resultDialogTitle">
+    <div class="dialog-head">
+      <div>
+        <p class="panel-kicker">当前作答统计</p>
+        <h2 id="resultDialogTitle">练习结果</h2>
+      </div>
+      <button class="icon-button" id="closeResultButton" type="button" aria-label="关闭练习结果">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="dialog-body">
+      <div class="result-score" id="resultScore">—</div>
+      <div class="result-grid">
+        <div><span>已作答</span><strong id="resultAnswered">0</strong></div>
+        <div><span>正确</span><strong id="resultCorrect">—</strong></div>
+        <div><span>错误</span><strong id="resultWrong">—</strong></div>
+        <div><span>未作答</span><strong id="resultUnanswered">0</strong></div>
+      </div>
+      <p class="notice-text" id="resultNotice"></p>
+    </div>
+    <div class="dialog-actions">
+      <button class="secondary-button" id="continuePracticeButton" type="button">继续作答</button>
+      <button class="primary-button" id="reviewWrongButton" type="button">只看错题</button>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="practice.js"></script>
+</body>
+</html>

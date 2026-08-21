@@ -1,0 +1,5 @@
+# Private workbook imports must stay on the user's device and out of Git history.
+408-reader/private/
+408-reader/imports/
+408-reader/*.pdf
+408-reader/*.qbank.json
